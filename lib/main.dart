@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -34,6 +33,26 @@ class DymaTrip extends StatelessWidget {
                     fit: StackFit.expand,
                     children: [
                       Image.asset("assets/images/los_angeles.jpg", fit: BoxFit.cover,),
+                      Padding(
+                        padding: EdgeInsets.all(10),
+                        child: Column(
+                          children: [
+                            Expanded(
+                                child: Row(
+                                  mainAxisAlignment: MainAxisAlignment.end,
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Icon(
+                                      Icons.star_border,
+                                      color: Colors.amberAccent,
+                                      size: 30,
+                                    ),
+                                  ],
+                                ),
+                            ),
+                          ],
+                        ),
+                      ),
                     ],
                   ),
                 ),
