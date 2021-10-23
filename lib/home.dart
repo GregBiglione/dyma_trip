@@ -18,7 +18,7 @@ class Home extends StatelessWidget {
         padding: EdgeInsets.all(10),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: [CityCard()],
+          children: [CityCard(),],
         ),
       ),
     );

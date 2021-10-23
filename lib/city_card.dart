@@ -9,13 +9,19 @@ class CityCard extends StatelessWidget {
       elevation: 5,
       child: Container(
         height: 150,
-        color: Colors.blue,
         child: Stack(
           fit: StackFit.expand,
           children: [
-            Image.asset(
-              "assets/images/los_angeles.jpg",
-              fit: BoxFit.cover,
+            Ink.image(
+                fit: BoxFit.cover,
+                image: AssetImage(
+                  "assets/images/los_angeles.jpg",
+                ),
+              child: InkWell(
+                onTap: (){
+                  print("Image clicked");
+                },
+              ),
             ),
             Padding(
               padding: EdgeInsets.all(10),
