@@ -19,7 +19,21 @@ class DymaTrip extends StatelessWidget {
             Icon(Icons.more_vert),
           ],
         ),
-        body: Text("Dymatrip"),
+        body: Container(
+          padding: EdgeInsets.all(10),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: [
+              Card(
+                elevation: 5,
+                child: Container(
+                  height: 150,
+                  color: Colors.blue,
+                ),
+              )
+            ],
+          ),
+        ),
       ),
     );
   }
