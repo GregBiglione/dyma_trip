@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -29,6 +30,12 @@ class DymaTrip extends StatelessWidget {
                 child: Container(
                   height: 150,
                   color: Colors.blue,
+                  child: Stack(
+                    fit: StackFit.expand,
+                    children: [
+                      Image.asset("assets/images/los_angeles.jpg", fit: BoxFit.cover,),
+                    ],
+                  ),
                 ),
               )
             ],
