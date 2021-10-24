@@ -29,16 +29,12 @@ class _CityState extends State<City> {
       ),
       body: Container(
         padding: EdgeInsets.all(10),
-        child: ListView.builder(
-            itemBuilder: (context, index) {
-              return ActivityCard(activity: widget.activities[index]);
-            },
-            itemCount: widget.activities.length,
-        ),/*Column(
-            children: widget.activities.map((activity) =>
-            ActivityCard(activity: activity),
-            ).toList(),
-        ),*/
+        child: GridView.count(
+            crossAxisCount: 2,
+            children:
+              widget.activities.map((activity) => ActivityCard(activity: activity,),
+              ).toList(),
+        ),
       ),
     );
   }
