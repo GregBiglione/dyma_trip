@@ -5,7 +5,7 @@ class Home extends StatefulWidget {
   const Home({Key? key}) : super(key: key);
 
   @override
-  _HomeState createState(){
+  _HomeState createState() {
     return _HomeState();
   }
 }
@@ -16,6 +16,17 @@ class _HomeState extends State<Home> {
     {"name": "London", "image": "assets/images/london.jpg", "checked": false,},
     {"name": "Stockholm", "image": "assets/images/stockholm.jpg", "checked": false,}
   ];
+
+  //----------------------------------------------------------------------------
+  //------------------ Switch check---------------------------------------------
+  //----------------------------------------------------------------------------
+
+  void switchChecked(city) {
+    int index = cities.indexOf(city);
+    setState(() {
+      cities[index]["checked"] = !cities[index]["checked"];
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -32,7 +43,16 @@ class _HomeState extends State<Home> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            ...cities.map((city) => CityCard(name: city["name"], image: city["image"], checked: false,),),
+            ...cities.map(
+              (city) => CityCard(
+                name: city["name"],
+                image: city["image"],
+                checked: city["checked"],
+                updateChecked: () {
+                  switchChecked(city);
+                },
+              ),
+            ).toList(),
           ],
         ),
       ),

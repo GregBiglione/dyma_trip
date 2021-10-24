@@ -4,8 +4,9 @@ class CityCard extends StatelessWidget {
   final String name;
   final String image;
   final bool checked;
+  final VoidCallback updateChecked;
 
-  const CityCard({Key? key, required this.name, required this.image, required this.checked}) : super(key: key);
+  const CityCard({Key? key, required this.name, required this.image, required this.checked, required this.updateChecked}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -19,10 +20,8 @@ class CityCard extends StatelessWidget {
             Ink.image(
                 fit: BoxFit.cover,
                 image: AssetImage(image),
-              child: InkWell(
-                onTap: (){
-                  print("Image clicked");
-                },
+                child: InkWell(
+                onTap: updateChecked,
               ),
             ),
             Padding(
@@ -34,8 +33,7 @@ class CityCard extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.end,
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Icon(
-                          Icons.star_border,
+                        Icon(checked ? Icons.star : Icons.star_border,
                           color: Colors.amberAccent,
                           size: 30,
                         ),
