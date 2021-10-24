@@ -1,3 +1,4 @@
+import 'package:dyma_trip/model/activity_model.dart';
 import 'package:flutter/material.dart';
 
 class City extends StatefulWidget {
@@ -8,6 +9,7 @@ class City extends StatefulWidget {
 }
 
 class _CityState extends State<City> {
+  List<Activity> activities = [];
 
   @override
   Widget build(BuildContext context) {
@@ -23,7 +25,7 @@ class _CityState extends State<City> {
       ),
       body: Container(
         padding: EdgeInsets.all(10),
-        child: Text("Los Angeles"),
+        child: Column(children: [],),
       ),
     );
   }
