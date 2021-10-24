@@ -8,6 +8,13 @@ class ActivityCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(child: Image.asset(activity.image),);
+    return Card(
+      child: ListTile(
+        leading: CircleAvatar(backgroundImage: AssetImage(activity.image),),//Image.asset(activity.image, width: 50,),
+        title: Text(activity.name),
+        subtitle: Text(activity.city),
+        trailing: Checkbox(value: false, tristate: false, onChanged: (value) {}),
+      ),
+    );
   }
 }
