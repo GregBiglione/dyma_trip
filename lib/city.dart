@@ -1,8 +1,11 @@
 import 'package:dyma_trip/model/activity_model.dart';
 import 'package:flutter/material.dart';
+import 'package:dyma_trip/data/data_activity.dart' as data;
 
 class City extends StatefulWidget {
-  const City({Key? key}) : super(key: key);
+  final List<Activity> activities = data.activities;
+
+  City({Key? key}) : super(key: key);
 
   @override
   _CityState createState() => _CityState();
