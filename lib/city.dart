@@ -1,8 +1,8 @@
-import 'package:dyma_trip/activity_card.dart';
+import 'package:dyma_trip/wigdet/activity_card.dart';
 import 'package:dyma_trip/model/activity_model.dart';
+import 'package:dyma_trip/wigdet/trip_overview.dart';
 import 'package:flutter/material.dart';
 import 'package:dyma_trip/data/data_activity.dart' as data;
-import 'package:intl/intl.dart';
 
 import 'model/trip_model.dart';
 
@@ -45,7 +45,7 @@ class _CityState extends State<City> {
         leading: Icon(
           Icons.chevron_left
         ),
-        title: Text("Los Angeles"),
+        title: Text("Organisation du voyage"),
         actions: [
           Icon(Icons.more_vert),
         ],
@@ -53,26 +53,7 @@ class _CityState extends State<City> {
       body: Container(
         child: Column(
           children: [
-            Container(
-              padding: EdgeInsets.all(10),
-              height: 200,
-              color: Colors.white,
-              child: Column(
-                children: [
-                  Row(
-                    children: [
-                      Expanded(
-                        child: Text(DateFormat("d/M/y").format(trip.date)),
-                      ),
-                      ElevatedButton(
-                          onPressed: setDate,
-                          child: Text("Sélectionnez une date"),
-                      ),
-                    ],
-                  ),
-                ],
-              ),
-            ),
+            TripOverview(trip: trip, setDate: setDate),
             Expanded(
                 child: GridView.count(
                   crossAxisCount: 2,
@@ -82,13 +63,7 @@ class _CityState extends State<City> {
                 ),
             ),
           ],
-        )
-        /*GridView.count(
-            crossAxisCount: 2,
-            children:
-              widget.activities.map((activity) => ActivityCard(activity: activity,),
-              ).toList(),
-        ),*/
+        ),
       ),
     );
   }

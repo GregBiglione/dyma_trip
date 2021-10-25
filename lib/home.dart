@@ -1,4 +1,4 @@
-import 'package:dyma_trip/city_card.dart';
+import 'package:dyma_trip/wigdet/city_card.dart';
 import 'package:flutter/material.dart';
 
 class Home extends StatefulWidget {
