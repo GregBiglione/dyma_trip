@@ -2,6 +2,9 @@ import 'package:dyma_trip/activity_card.dart';
 import 'package:dyma_trip/model/activity_model.dart';
 import 'package:flutter/material.dart';
 import 'package:dyma_trip/data/data_activity.dart' as data;
+import 'package:intl/intl.dart';
+
+import 'model/trip_model.dart';
 
 class City extends StatefulWidget {
   final List<Activity> activities = data.activities;
@@ -14,6 +17,26 @@ class City extends StatefulWidget {
 
 class _CityState extends State<City> {
   List<Activity> activities = [];
+  Trip trip = Trip(city: "Los Angeles", activities: [], date: DateTime.now());
+
+  //----------------------------------------------------------------------------
+  //----------------------- Show Date picker -----------------------------------
+  //----------------------------------------------------------------------------
+
+  void setDate(){
+    showDatePicker(
+        context: context,
+        initialDate: DateTime.now(),
+        firstDate: DateTime.now(),
+        lastDate: DateTime(2486)
+    ).then((selectedDate) {
+      if(selectedDate != null) {
+        setState(() {
+          trip.date = selectedDate;
+        });
+      }
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -39,12 +62,10 @@ class _CityState extends State<City> {
                   Row(
                     children: [
                       Expanded(
-                        child: Text("Choisissez une date"),
+                        child: Text(DateFormat("d/M/y").format(trip.date)),
                       ),
                       ElevatedButton(
-                          onPressed: () {
-
-                          },
+                          onPressed: setDate,
                           child: Text("Sélectionnez une date"),
                       ),
                     ],
