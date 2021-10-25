@@ -1,6 +1,6 @@
-import 'package:dyma_trip/wigdet/activity_card.dart';
 import 'package:dyma_trip/model/activity_model.dart';
 import 'package:dyma_trip/wigdet/activity_list.dart';
+import 'package:dyma_trip/wigdet/trip_activity_list.dart';
 import 'package:dyma_trip/wigdet/trip_overview.dart';
 import 'package:flutter/material.dart';
 import 'package:dyma_trip/data/data_activity.dart' as data;
@@ -17,8 +17,8 @@ class City extends StatefulWidget {
 }
 
 class _CityState extends State<City> {
-  List<Activity> activities = [];
   Trip trip = Trip(city: "Los Angeles", activities: [], date: DateTime.now());
+  int index = 0;
 
   //----------------------------------------------------------------------------
   //----------------------- Show Date picker -----------------------------------
@@ -39,6 +39,17 @@ class _CityState extends State<City> {
     });
   }
 
+  //----------------------------------------------------------------------------
+  //----------------------- Click on Navigation bottom bar ---------------------
+  //----------------------------------------------------------------------------
+
+  void switchIndex(selectedIndex){
+    setState(() {
+      index = selectedIndex;
+      trip = Trip(city: "Los Angeles", activities: [], date: DateTime.now());
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -56,16 +67,18 @@ class _CityState extends State<City> {
           children: [
             TripOverview(trip: trip, setDate: setDate),
             Expanded(
-                child: ActivityList(activities: widget.activities),
+                child: index == 0 ? ActivityList(activities: widget.activities) : TripActivityList(),
             ),
           ],
         ),
       ),
       bottomNavigationBar: BottomNavigationBar(
+        currentIndex: index,
           items: [
             BottomNavigationBarItem(icon: Icon(Icons.map), label: "Découverte"),
             BottomNavigationBarItem(icon: Icon(Icons.stars), label: "Mes activités"),
           ],
+        onTap: switchIndex,
       ),
     );
   }
