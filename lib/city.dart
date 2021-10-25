@@ -28,13 +28,46 @@ class _CityState extends State<City> {
         ],
       ),
       body: Container(
-        padding: EdgeInsets.all(10),
-        child: GridView.count(
+        child: Column(
+          children: [
+            Container(
+              padding: EdgeInsets.all(10),
+              height: 200,
+              color: Colors.white,
+              child: Column(
+                children: [
+                  Row(
+                    children: [
+                      Expanded(
+                        child: Text("Choisissez une date"),
+                      ),
+                      ElevatedButton(
+                          onPressed: () {
+
+                          },
+                          child: Text("Sélectionnez une date"),
+                      ),
+                    ],
+                  ),
+                ],
+              ),
+            ),
+            Expanded(
+                child: GridView.count(
+                  crossAxisCount: 2,
+                  children:
+                  widget.activities.map((activity) => ActivityCard(activity: activity,),
+                  ).toList(),
+                ),
+            ),
+          ],
+        )
+        /*GridView.count(
             crossAxisCount: 2,
             children:
               widget.activities.map((activity) => ActivityCard(activity: activity,),
               ).toList(),
-        ),
+        ),*/
       ),
     );
   }
