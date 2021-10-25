@@ -65,6 +65,12 @@ class _CityState extends State<City> {
           ],
         ),
       ),
+      bottomNavigationBar: BottomNavigationBar(
+          items: [
+            BottomNavigationBarItem(icon: Icon(Icons.map), label: "Découverte"),
+            BottomNavigationBarItem(icon: Icon(Icons.stars), label: "Mes activités"),
+          ],
+      ),
     );
   }
 }
