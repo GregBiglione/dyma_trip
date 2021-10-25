@@ -1,5 +1,6 @@
 import 'package:dyma_trip/wigdet/activity_card.dart';
 import 'package:dyma_trip/model/activity_model.dart';
+import 'package:dyma_trip/wigdet/activity_list.dart';
 import 'package:dyma_trip/wigdet/trip_overview.dart';
 import 'package:flutter/material.dart';
 import 'package:dyma_trip/data/data_activity.dart' as data;
@@ -55,12 +56,7 @@ class _CityState extends State<City> {
           children: [
             TripOverview(trip: trip, setDate: setDate),
             Expanded(
-                child: GridView.count(
-                  crossAxisCount: 2,
-                  children:
-                  widget.activities.map((activity) => ActivityCard(activity: activity,),
-                  ).toList(),
-                ),
+                child: ActivityList(activities: widget.activities),
             ),
           ],
         ),
