@@ -10,6 +10,24 @@ import 'model/trip_model.dart';
 class City extends StatefulWidget {
   final List<Activity> activities = data.activities;
 
+  //----------------------------------------------------------------------------
+  //----------------------- Responsive design ----------------------------------
+  //----------------------------------------------------------------------------
+
+  showContext({required BuildContext context, required List<Widget> children}){
+    var orientation = MediaQuery.of(context).orientation;
+
+    if(orientation == Orientation.landscape){
+      return Row(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        children: children,
+      );
+    }
+    else {
+      return Column(children: children,);
+    }
+  }
+
   City({Key? key}) : super(key: key);
 
   @override
@@ -104,20 +122,21 @@ class _CityState extends State<City> {
         ],
       ),
       body: Container(
-        child: Column(
-          children: [
-            TripOverview(trip: trip, setDate: setDate),
-            Expanded(
+        child: widget.showContext(
+            context: context,
+            children: [
+              TripOverview(trip: trip, setDate: setDate),
+              Expanded(
                 child: index == 0 ? ActivityList(
-                    activities: widget.activities,
-                    selectedActivities: trip.activities,
-                    toggleActivity: toggleActivity,
+                  activities: widget.activities,
+                  selectedActivities: trip.activities,
+                  toggleActivity: toggleActivity,
                 ) : TripActivityList(
                   activities: tripActivities,
-                    deleteTripActivity: deleteTripActivity,
+                  deleteTripActivity: deleteTripActivity,
                 ),
-            ),
-          ],
+              ),
+            ],
         ),
       ),
       bottomNavigationBar: BottomNavigationBar(
