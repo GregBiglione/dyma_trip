@@ -1,5 +1,4 @@
 import 'package:dyma_trip/model/activity_model.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class ActivityCard extends StatelessWidget {
@@ -15,13 +14,52 @@ class ActivityCard extends StatelessWidget {
         //width: double.infinity,
         height: 150,
         margin: EdgeInsets.all(1),
-        child: Ink.image(
-          image: AssetImage(activity.image),
-          fit: BoxFit.cover,
-          child: InkWell(
-            onTap: toggleActivity,
-          ),
-        ),
+        child: Stack(
+          fit: StackFit.expand,
+          children: [
+            Ink.image(
+              image: AssetImage(activity.image),
+              fit: BoxFit.cover,
+              child: InkWell(
+                onTap: toggleActivity,
+              ),
+            ),
+            Container(
+              padding: EdgeInsets.all(10),
+              child: Column(
+                children: [
+                  Expanded(
+                      child: Row(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        mainAxisAlignment: MainAxisAlignment.end,
+                        children: [
+                          if(isSelected)
+                          Icon(
+                              Icons.check_circle,
+                          color: Colors.greenAccent,),
+                        ],
+                      ),
+                  ),
+                  Row(
+                    children: [
+                      Flexible(
+                          child: FittedBox(
+                            child: Text(
+                              activity.name,
+                              style: TextStyle(
+                                fontSize: 20,
+                                color: Colors.white,
+                              ),
+                            ),
+                          ),
+                      ),
+                    ],
+                  ),
+                ],
+              ),
+            ),
+          ],
+        )
       );
   }
 }
