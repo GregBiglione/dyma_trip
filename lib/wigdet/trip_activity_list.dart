@@ -1,4 +1,5 @@
 import 'package:dyma_trip/model/activity_model.dart';
+import 'package:dyma_trip/wigdet/trip_activity_card.dart';
 import 'package:flutter/material.dart';
 
 class TripActivityList extends StatelessWidget {
@@ -13,21 +14,7 @@ class TripActivityList extends StatelessWidget {
       child: ListView.builder(
           itemBuilder: (context, index) {
             var activity = activities[index];
-            return Card(
-              child: ListTile(
-                leading: CircleAvatar(
-                  backgroundImage: AssetImage(activity.image),
-                ),
-                title: Text(activity.name),
-                subtitle: Text(activity.city),
-                trailing: IconButton(
-                  icon: Icon(Icons.delete), color: Colors.red,
-                  onPressed: () {
-                    deleteTripActivity(activity.id);
-                  },
-                ),
-              ),
-            );
+            return TripActivityCard(activity: activity, deleteTripActivity: deleteTripActivity);
           },
         itemCount: activities.length,
       ),
