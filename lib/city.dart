@@ -17,8 +17,15 @@ class City extends StatefulWidget {
 }
 
 class _CityState extends State<City> {
-  Trip trip = Trip(city: "Los Angeles", activities: [], date: DateTime.now());
-  int index = 0;
+  late Trip trip;
+  late int index;
+
+  @override
+  void initState() {
+    trip = Trip(city: "Los Angeles", activities: [], date: null);
+    index = 0;
+    super.initState();
+  }
 
   //----------------------------------------------------------------------------
   //----------------------- Show Date picker -----------------------------------
@@ -46,7 +53,7 @@ class _CityState extends State<City> {
   void switchIndex(selectedIndex){
     setState(() {
       index = selectedIndex;
-      trip = Trip(city: "Los Angeles", activities: [], date: DateTime.now());
+      trip = Trip(city: "Los Angeles", activities: [], date: null);
     });
   }
 

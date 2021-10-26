@@ -33,11 +33,15 @@ class TripOverview extends StatelessWidget {
           Row(
             children: [
               Expanded(
-                child: Text(DateFormat("d/M/y").format(trip.date)),
+                child: Text(
+                  trip.date != null
+                      ? DateFormat("d/M/y").format(trip.date!)
+                      : "Sélectionner une date",
+                  style: TextStyle(fontSize: 15),),
               ),
               ElevatedButton(
                 onPressed: setDate,
-                child: Text("Sélectionnez une date", style: TextStyle(fontSize: 20),),
+                child: Text("Sélectionnez une date",),
               ),
             ],
           ),
