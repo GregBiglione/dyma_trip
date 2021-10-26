@@ -5,7 +5,7 @@ import 'package:dyma_trip/wigdet/trip_overview.dart';
 import 'package:flutter/material.dart';
 import 'package:dyma_trip/data/data_activity.dart' as data;
 
-import 'model/trip_model.dart';
+import '../model/trip_model.dart';
 
 class City extends StatefulWidget {
   final List<Activity> activities = data.activities;

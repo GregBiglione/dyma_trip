@@ -1,5 +1,5 @@
-import 'package:dyma_trip/city.dart';
-import 'package:dyma_trip/home.dart';
+import 'package:dyma_trip/view/city_view.dart';
+import 'package:dyma_trip/view/home_view.dart';
 import 'package:flutter/material.dart';
 
 void main() {

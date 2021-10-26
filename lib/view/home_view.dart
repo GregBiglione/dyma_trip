@@ -12,9 +12,9 @@ class Home extends StatefulWidget {
 
 class _HomeState extends State<Home> {
   List cities = [
-    {"name": "Los Angeles", "image": "assets/images/los_angeles.jpg", "checked": false,},
-    {"name": "London", "image": "assets/images/london.jpg", "checked": false,},
-    {"name": "Stockholm", "image": "assets/images/stockholm.jpg", "checked": false,}
+    {"name": "Los Angeles", "image": "assets/images/los_angeles.jpg"},
+    {"name": "London", "image": "assets/images/london.jpg"},
+    {"name": "Stockholm", "image": "assets/images/stockholm.jpg"}
   ];
 
   //----------------------------------------------------------------------------
