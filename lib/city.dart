@@ -72,6 +72,16 @@ class _CityState extends State<City> {
   }
 
   //----------------------------------------------------------------------------
+  //----------------------- Delete activity ------------------------------------
+  //----------------------------------------------------------------------------
+
+  void deleteTripActivity(String id) {
+    setState(() {
+      trip.activities.remove(id);
+    });
+  }
+
+  //----------------------------------------------------------------------------
   //----------------------- Click on Navigation bottom bar ---------------------
   //----------------------------------------------------------------------------
 
@@ -104,6 +114,7 @@ class _CityState extends State<City> {
                     toggleActivity: toggleActivity,
                 ) : TripActivityList(
                   activities: tripActivities,
+                    deleteTripActivity: deleteTripActivity,
                 ),
             ),
           ],
