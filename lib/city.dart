@@ -20,6 +20,10 @@ class _CityState extends State<City> {
   late Trip trip;
   late int index;
 
+  //----------------------------------------------------------------------------
+  //----------------------- Initialize variables in initState ------------------
+  //----------------------------------------------------------------------------
+
   @override
   void initState() {
     trip = Trip(city: "Los Angeles", activities: [], date: null);
@@ -58,13 +62,22 @@ class _CityState extends State<City> {
   }
 
   //----------------------------------------------------------------------------
+  //----------------------- Get selected activities ----------------------------
+  //----------------------------------------------------------------------------
+
+  List<Activity> get tripActivities {
+    return widget.activities
+        .where((activity) => trip.activities.contains(activity.id))
+        .toList();
+  }
+
+  //----------------------------------------------------------------------------
   //----------------------- Click on Navigation bottom bar ---------------------
   //----------------------------------------------------------------------------
 
   void switchIndex(selectedIndex){
     setState(() {
       index = selectedIndex;
-      trip = Trip(city: "Los Angeles", activities: [], date: null);
     });
   }
 
@@ -89,7 +102,9 @@ class _CityState extends State<City> {
                     activities: widget.activities,
                     selectedActivities: trip.activities,
                     toggleActivity: toggleActivity,
-                ) : TripActivityList(),
+                ) : TripActivityList(
+                  activities: tripActivities,
+                ),
             ),
           ],
         ),

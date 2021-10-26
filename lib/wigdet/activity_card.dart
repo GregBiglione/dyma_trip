@@ -11,7 +11,6 @@ class ActivityCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-        //width: double.infinity,
         height: 150,
         margin: EdgeInsets.all(1),
         child: Stack(
@@ -33,10 +32,7 @@ class ActivityCard extends StatelessWidget {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         mainAxisAlignment: MainAxisAlignment.end,
                         children: [
-                          if(isSelected)
-                          Icon(
-                              Icons.check_circle,
-                          color: Colors.greenAccent,),
+                          if(isSelected) Icon(Icons.check_circle, size: 30, color: Colors.greenAccent,),
                         ],
                       ),
                   ),
