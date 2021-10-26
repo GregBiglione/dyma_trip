@@ -4,8 +4,10 @@ import 'package:flutter/material.dart';
 
 class ActivityList extends StatelessWidget {
   final List<Activity> activities;
+  final List<String> selectedActivities;
+  final Function toggleActivity;
 
-  const ActivityList({Key? key, required this.activities}) : super(key: key);
+  const ActivityList({Key? key, required this.activities, required this.selectedActivities, required this.toggleActivity}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -14,7 +16,14 @@ class ActivityList extends StatelessWidget {
         crossAxisSpacing: 1,
         crossAxisCount: 2,
         children:
-          activities.map((activity) => ActivityCard(activity: activity,)).toList(),
+          activities.map((activity) => ActivityCard(
+            activity: activity,
+            isSelected: selectedActivities.contains(activity.id),
+            toggleActivity: () {
+              toggleActivity(activity.id);
+            },
+          ),
+          ).toList(),
     );
   }
 }

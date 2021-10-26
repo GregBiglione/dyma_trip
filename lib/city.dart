@@ -47,6 +47,17 @@ class _CityState extends State<City> {
   }
 
   //----------------------------------------------------------------------------
+  //----------------------- Toggle activity on click  --------------------------
+  //----------------------------------------------------------------------------
+
+  void toggleActivity(String id){
+    setState(() {
+      trip.activities.contains(id) ? trip.activities.remove(id) : trip.activities.add(id);
+      print(trip.activities);
+    });
+  }
+
+  //----------------------------------------------------------------------------
   //----------------------- Click on Navigation bottom bar ---------------------
   //----------------------------------------------------------------------------
 
@@ -74,7 +85,11 @@ class _CityState extends State<City> {
           children: [
             TripOverview(trip: trip, setDate: setDate),
             Expanded(
-                child: index == 0 ? ActivityList(activities: widget.activities) : TripActivityList(),
+                child: index == 0 ? ActivityList(
+                    activities: widget.activities,
+                    selectedActivities: trip.activities,
+                    toggleActivity: toggleActivity,
+                ) : TripActivityList(),
             ),
           ],
         ),
