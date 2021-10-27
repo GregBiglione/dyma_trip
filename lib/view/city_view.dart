@@ -11,6 +11,9 @@ import 'package:dyma_trip/data/data_activity.dart' as data;
 import '../model/trip_model.dart';
 
 class CityView extends StatefulWidget {
+  static const String ROUTE_NAME = "/city";
+  final City city;
+
   final List<Activity> activities = data.activities;
 
   //----------------------------------------------------------------------------
@@ -31,7 +34,7 @@ class CityView extends StatefulWidget {
     }
   }
 
-  CityView({Key? key}) : super(key: key);
+  CityView({Key? key, required this.city}) : super(key: key);
 
   @override
   _CityViewState createState() => _CityViewState();
@@ -166,7 +169,7 @@ class _CityViewState extends State<CityView> {
 
   @override
   Widget build(BuildContext context) {
-    final City city = ModalRoute.of(context)!.settings.arguments as City;
+    //final City city = ModalRoute.of(context)!.settings.arguments as City;
 
     return Scaffold(
       appBar: AppBar(
@@ -180,7 +183,7 @@ class _CityViewState extends State<CityView> {
         child: widget.showContext(
             context: context,
             children: [
-              TripOverview(cityName: city.name, trip: trip, setDate: setDate, amount: amount,),
+              TripOverview(cityName: widget.city.name, trip: trip, setDate: setDate, amount: amount,),
               Expanded(
                 child: index == 0 ? ActivityList(
                   activities: widget.activities,

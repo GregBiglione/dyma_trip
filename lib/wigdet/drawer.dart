@@ -1,4 +1,5 @@
 import 'package:dyma_trip/view/home_view.dart';
+import 'package:dyma_trip/wigdet/trips_view.dart';
 import 'package:flutter/material.dart';
 
 class DrawerTrip extends StatelessWidget {
@@ -41,7 +42,7 @@ class DrawerTrip extends StatelessWidget {
             leading: Icon(Icons.flight),
             title: Text("Mes voyages"),
             onTap: () {
-              //Navigator.pushNamed(context, HomeView.ROUTE_NAME);
+              Navigator.pushNamed(context, TripsView.ROUTE_NAME);
             },
           ),
         ],
