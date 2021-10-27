@@ -6,8 +6,9 @@ import 'package:flutter/material.dart';
 
 class HomeView extends StatefulWidget {
   static String ROUTE_NAME = "/";
+  final List<City> cities;
 
-  const HomeView({Key? key}) : super(key: key);
+  const HomeView({Key? key, required this.cities}) : super(key: key);
 
   @override
   _HomeViewState createState() {
@@ -16,11 +17,6 @@ class HomeView extends StatefulWidget {
 }
 
 class _HomeViewState extends State<HomeView> {
-  List cities = [
-    City(name: "Los Angeles", image: "assets/images/los_angeles.jpg"),
-    City(name: "London", image: "assets/images/london.jpg"),
-    City(name: "Stockholm", image: "assets/images/stockholm.jpg"),
-  ];
 
   @override
   Widget build(BuildContext context) {
@@ -34,7 +30,7 @@ class _HomeViewState extends State<HomeView> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            ...cities.map(
+            ...widget.cities.map(
               (city) => CityCard(
                 city: city,
               ),

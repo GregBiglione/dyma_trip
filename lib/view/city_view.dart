@@ -14,7 +14,7 @@ class CityView extends StatefulWidget {
   static const String ROUTE_NAME = "/city";
   final City city;
 
-  final List<Activity> activities = data.activities;
+  //final List<Activity> activities = data.activities;
 
   //----------------------------------------------------------------------------
   //----------------------- Responsive design ----------------------------------
@@ -86,11 +86,19 @@ class _CityViewState extends State<CityView> {
   }
 
   //----------------------------------------------------------------------------
+  //----------------------- Get activities list --------------------------------
+  //----------------------------------------------------------------------------
+
+  List<Activity> get activities {
+    return widget.city.activities;
+  }
+
+  //----------------------------------------------------------------------------
   //----------------------- Get selected activities ----------------------------
   //----------------------------------------------------------------------------
 
   List<Activity> get tripActivities {
-    return widget.activities
+    return widget.city.activities
         .where((activity) => trip.activities.contains(activity.id))
         .toList();
   }
@@ -101,7 +109,7 @@ class _CityViewState extends State<CityView> {
 
   double get amount {
     return trip.activities.fold(0.00, (previousValue, element) {
-      final activity = widget.activities.firstWhere((activity) => activity.id == element);
+      final activity = widget.city.activities.firstWhere((activity) => activity.id == element);
       return previousValue + activity.price;
     });
   }
@@ -186,7 +194,7 @@ class _CityViewState extends State<CityView> {
               TripOverview(cityName: widget.city.name, trip: trip, setDate: setDate, amount: amount,),
               Expanded(
                 child: index == 0 ? ActivityList(
-                  activities: widget.activities,
+                  activities: widget.city.activities,
                   selectedActivities: trip.activities,
                   toggleActivity: toggleActivity,
                 ) : TripActivityList(

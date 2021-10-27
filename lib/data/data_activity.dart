@@ -1,6 +1,13 @@
 import 'package:dyma_trip/model/activity_model.dart';
+import 'package:dyma_trip/model/city_model.dart';
 
-List<Activity> activities = [
+List<City> cities = [
+  City(name: "Los Angeles", image: "assets/images/los_angeles.jpg", activities: losAngelesActivities),
+  City(name: "Londres", image: "assets/images/london.jpg", activities: []),
+  City(name: "Stockholm", image: "assets/images/stockholm.jpg", activities: []),
+];
+
+List<Activity> losAngelesActivities = [
   Activity(id: "la1", name: "Les studios Universal", image: "assets/images/activities/universal_studios.jpg", city: "Los Angeles", price: 35.00),
   Activity(id: "la2", name: "Venice beach", image: "assets/images/activities/venice_beach.jpg", city: "Los Angeles", price: 0.00),
   Activity(id: "la3", name: "Hollywood sign", image: "assets/images/activities/hollywood_sign.jpg", city: "Los Angeles", price: 15.00),
