@@ -21,12 +21,9 @@ class CityCard extends StatelessWidget {
                 image: AssetImage(city.image),
                 child: InkWell(
                 onTap: () {
-                  Navigator.push(
-                      context, 
-                      MaterialPageRoute(builder: (context) {
-                        return CityView();
-                      },
-                    ),
+                  Navigator.pushNamed(
+                    context,
+                    "/city",
                   );
                 },
               ),
