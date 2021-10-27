@@ -151,7 +151,26 @@ class _CityViewState extends State<CityView> {
           );
         }
     );
-    if(result == "Save"){
+    if(trip.date == null) {
+      showDialog(
+          context: context,
+          builder: (context) {
+            return AlertDialog(
+              title: Text("Attention !"),
+              content: Text("Vous n'avez pas sélectionné de date"),
+              actions: [
+                ElevatedButton(
+                    onPressed: () {
+                      Navigator.pop(context);
+                    },
+                    child: Text("Ok"),
+                ),
+              ],
+            );
+          },
+      );
+    }
+    else if(result == "Save"){
       widget.addTrip(trip);
       Navigator.pushNamed(context, HomeView.ROUTE_NAME);
     }
