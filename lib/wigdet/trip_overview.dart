@@ -6,16 +6,9 @@ class TripOverview extends StatelessWidget {
   final Trip trip;
   final VoidCallback setDate;
   final String cityName;
+  final double amount;
 
-  const TripOverview({Key? key, required this.trip, required this.setDate, required this.cityName}) : super(key: key);
-
-  //----------------------------------------------------------------------------
-  //----------------------- Get trip price -------------------------------------
-  //----------------------------------------------------------------------------
-
-  double get amount {
-    return 0;
-  }
+  const TripOverview({Key? key, required this.trip, required this.setDate, required this.cityName, required this.amount}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

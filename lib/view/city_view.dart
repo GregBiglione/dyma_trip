@@ -91,6 +91,17 @@ class _CityViewState extends State<CityView> {
   }
 
   //----------------------------------------------------------------------------
+  //----------------------- Get trip price -------------------------------------
+  //----------------------------------------------------------------------------
+
+  double get amount {
+    return trip.activities.fold(0.00, (previousValue, element) {
+      final activity = widget.activities.firstWhere((activity) => activity.id == element);
+      return previousValue + activity.price;
+    });
+  }
+
+  //----------------------------------------------------------------------------
   //----------------------- Delete activity ------------------------------------
   //----------------------------------------------------------------------------
 
@@ -131,7 +142,7 @@ class _CityViewState extends State<CityView> {
         child: widget.showContext(
             context: context,
             children: [
-              TripOverview(cityName: city.name, trip: trip, setDate: setDate),
+              TripOverview(cityName: city.name, trip: trip, setDate: setDate, amount: amount,),
               Expanded(
                 child: index == 0 ? ActivityList(
                   activities: widget.activities,
