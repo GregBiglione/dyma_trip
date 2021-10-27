@@ -1,5 +1,6 @@
 import 'package:dyma_trip/model/activity_model.dart';
 import 'package:dyma_trip/model/city_model.dart';
+import 'package:dyma_trip/view/home_view.dart';
 import 'package:dyma_trip/wigdet/activity_list.dart';
 import 'package:dyma_trip/wigdet/trip_activity_list.dart';
 import 'package:dyma_trip/wigdet/trip_overview.dart';
@@ -112,6 +113,47 @@ class _CityViewState extends State<CityView> {
   }
 
   //----------------------------------------------------------------------------
+  //----------------------- Save Trip Dialog box -------------------------------
+  //----------------------------------------------------------------------------
+
+  void saveTrip() async{
+    final result = await showDialog(
+        context: context,
+        builder: (context) {
+          return SimpleDialog(
+            title: Text("Voulez vous sauvegarder ce voyage ?"),
+            contentPadding: EdgeInsets.all(20),
+            children: [
+              Row(
+                mainAxisAlignment: MainAxisAlignment.end,
+                children: [
+                  ElevatedButton(onPressed: () {
+                    Navigator.pop(context, "Cancel");
+                  }, child: Text("Annuler"),
+                  ),
+                  SizedBox(width: 30,),
+                  ElevatedButton(onPressed: () {
+                    Navigator.pop(context, "Save");
+                  },
+                    child: Text("Sauvegarder"),
+                  ),
+                ],
+              ),
+            ],
+            shape: RoundedRectangleBorder(
+              side: BorderSide(
+                color: Colors.white,
+                width: 0.5,
+              ),
+              borderRadius: BorderRadius.circular(15),
+            ),
+          );
+        }
+    );
+    Navigator.pushNamed(context, HomeView.ROUTE_NAME);
+  }
+
+  //----------------------------------------------------------------------------
   //----------------------- Click on Navigation bottom bar ---------------------
   //----------------------------------------------------------------------------
 
@@ -155,6 +197,10 @@ class _CityViewState extends State<CityView> {
               ),
             ],
         ),
+      ),
+      floatingActionButton: FloatingActionButton(
+        child: Icon(Icons.check),
+        onPressed: saveTrip,
       ),
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: index,

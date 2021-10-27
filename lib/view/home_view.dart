@@ -4,6 +4,8 @@ import 'package:flutter/material.dart';
 
 
 class HomeView extends StatefulWidget {
+  static String ROUTE_NAME = "/";
+
   const HomeView({Key? key}) : super(key: key);
 
   @override
