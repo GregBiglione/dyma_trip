@@ -1,5 +1,6 @@
 import 'package:dyma_trip/model/city_model.dart';
 import 'package:dyma_trip/wigdet/city_card.dart';
+import 'package:dyma_trip/wigdet/drawer.dart';
 import 'package:flutter/material.dart';
 
 
@@ -25,12 +26,9 @@ class _HomeViewState extends State<HomeView> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        leading: Icon(Icons.home),
         title: Text("DymaTrip"),
-        actions: [
-          Icon(Icons.more_vert),
-        ],
       ),
+      drawer: DrawerTrip(),
       body: Container(
         padding: EdgeInsets.all(10),
         child: Column(

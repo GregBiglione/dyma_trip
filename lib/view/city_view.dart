@@ -2,6 +2,7 @@ import 'package:dyma_trip/model/activity_model.dart';
 import 'package:dyma_trip/model/city_model.dart';
 import 'package:dyma_trip/view/home_view.dart';
 import 'package:dyma_trip/wigdet/activity_list.dart';
+import 'package:dyma_trip/wigdet/drawer.dart';
 import 'package:dyma_trip/wigdet/trip_activity_list.dart';
 import 'package:dyma_trip/wigdet/trip_overview.dart';
 import 'package:flutter/material.dart';
@@ -169,17 +170,12 @@ class _CityViewState extends State<CityView> {
 
     return Scaffold(
       appBar: AppBar(
-        leading: IconButton(
-          icon: Icon(Icons.arrow_back),
-          onPressed: () {
-            Navigator.pop(context);
-          },
-        ),
         title: Text("Organisation du voyage"),
         actions: [
           Icon(Icons.more_vert),
         ],
       ),
+      drawer: DrawerTrip(),
       body: Container(
         child: widget.showContext(
             context: context,
