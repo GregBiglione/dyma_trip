@@ -79,10 +79,9 @@ class _CityViewState extends State<CityView> {
   //----------------------- Toggle activity on click  --------------------------
   //----------------------------------------------------------------------------
 
-  void toggleActivity(String id){
+  void toggleActivity(Activity activity){
     setState(() {
-      trip.activities.contains(id) ? trip.activities.remove(id) : trip.activities.add(id);
-      print(trip.activities);
+      trip.activities.contains(activity) ? trip.activities.remove(activity) : trip.activities.add(activity);
     });
   }
 
@@ -95,23 +94,12 @@ class _CityViewState extends State<CityView> {
   }
 
   //----------------------------------------------------------------------------
-  //----------------------- Get selected activities ----------------------------
-  //----------------------------------------------------------------------------
-
-  List<Activity> get tripActivities {
-    return widget.city.activities
-        .where((activity) => trip.activities.contains(activity.id))
-        .toList();
-  }
-
-  //----------------------------------------------------------------------------
   //----------------------- Get trip price -------------------------------------
   //----------------------------------------------------------------------------
 
   double get amount {
     return trip.activities.fold(0.00, (previousValue, element) {
-      final activity = widget.city.activities.firstWhere((activity) => activity.id == element);
-      return previousValue + activity.price;
+      return previousValue + element.price;
     });
   }
 
@@ -119,9 +107,9 @@ class _CityViewState extends State<CityView> {
   //----------------------- Delete activity ------------------------------------
   //----------------------------------------------------------------------------
 
-  void deleteTripActivity(String id) {
+  void deleteTripActivity(Activity activity) {
     setState(() {
-      trip.activities.remove(id);
+      trip.activities.remove(activity);
     });
   }
 
@@ -202,7 +190,7 @@ class _CityViewState extends State<CityView> {
                   selectedActivities: trip.activities,
                   toggleActivity: toggleActivity,
                 ) : TripActivityList(
-                  activities: tripActivities,
+                  activities: trip.activities,
                   deleteTripActivity: deleteTripActivity,
                 ),
               ),
