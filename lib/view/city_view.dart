@@ -13,6 +13,7 @@ import '../model/trip_model.dart';
 class CityView extends StatefulWidget {
   static const String ROUTE_NAME = "/city";
   final City city;
+  final Function addTrip;
 
   //final List<Activity> activities = data.activities;
 
@@ -34,7 +35,7 @@ class CityView extends StatefulWidget {
     }
   }
 
-  CityView({Key? key, required this.city}) : super(key: key);
+  CityView({Key? key, required this.city, required this.addTrip}) : super(key: key);
 
   @override
   _CityViewState createState() => _CityViewState();
@@ -50,7 +51,7 @@ class _CityViewState extends State<CityView> {
 
   @override
   void initState() {
-    trip = Trip(city: "Los Angeles", activities: [], date: null);
+    trip = Trip(city: widget.city.name, activities: [], date: null);
     index = 0;
     super.initState();
   }
@@ -162,7 +163,10 @@ class _CityViewState extends State<CityView> {
           );
         }
     );
-    Navigator.pushNamed(context, HomeView.ROUTE_NAME);
+    if(result == "Save"){
+      widget.addTrip(trip);
+      Navigator.pushNamed(context, HomeView.ROUTE_NAME);
+    }
   }
 
   //----------------------------------------------------------------------------

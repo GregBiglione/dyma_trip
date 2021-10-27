@@ -22,28 +22,31 @@ class DymaTrip extends StatefulWidget {
 }
 
 class _DymaTripState extends State<DymaTrip> {
-  /*late List<Trip> trips = [];*/
+  late List<Trip> trips = [];
 
-  /*//----------------------------------------------------------------------------*/
-  /*//----------------------- Save Trip Dialog box -------------------------------*/
-  /*//----------------------------------------------------------------------------*/
+  //----------------------------------------------------------------------------
+  //----------------------- Save Trip Dialog box -------------------------------
+  //----------------------------------------------------------------------------
 
-  /*void addTrip(Trip trip) {*/
-  /*  trips.add(trip);*/
-  /*}*/
+  void addTrip(Trip trip) {
+    trips.add(trip);
+  }
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: HomeView(cities: cities,),
+      home: HomeView(cities: widget.cities,),
       onGenerateRoute: (settings) {
         switch(settings.name) {
           case CityView.ROUTE_NAME:
             return MaterialPageRoute(
                 builder: (context) {
                   final City city = settings.arguments as City;
-                  return CityView(city: city);
+                  return CityView(
+                      city: city,
+                      addTrip: addTrip,
+                  );
                 }
             );
           case TripsView.ROUTE_NAME:
