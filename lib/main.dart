@@ -13,7 +13,7 @@ class DymaTrip extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: City()/*Home()*/,
+      home: HomeView(),
     );
   }
 }

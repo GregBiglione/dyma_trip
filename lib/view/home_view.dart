@@ -1,32 +1,23 @@
+import 'package:dyma_trip/model/city_model.dart';
 import 'package:dyma_trip/wigdet/city_card.dart';
 import 'package:flutter/material.dart';
 
-class Home extends StatefulWidget {
-  const Home({Key? key}) : super(key: key);
+
+class HomeView extends StatefulWidget {
+  const HomeView({Key? key}) : super(key: key);
 
   @override
-  _HomeState createState() {
-    return _HomeState();
+  _HomeViewState createState() {
+    return _HomeViewState();
   }
 }
 
-class _HomeState extends State<Home> {
+class _HomeViewState extends State<HomeView> {
   List cities = [
-    {"name": "Los Angeles", "image": "assets/images/los_angeles.jpg"},
-    {"name": "London", "image": "assets/images/london.jpg"},
-    {"name": "Stockholm", "image": "assets/images/stockholm.jpg"}
+    City(name: "Los Angeles", image: "assets/images/los_angeles.jpg"),
+    City(name: "London", image: "assets/images/london.jpg"),
+    City(name: "Stockholm", image: "assets/images/stockholm.jpg"),
   ];
-
-  //----------------------------------------------------------------------------
-  //------------------ Switch check---------------------------------------------
-  //----------------------------------------------------------------------------
-
-  void switchChecked(city) {
-    int index = cities.indexOf(city);
-    setState(() {
-      cities[index]["checked"] = !cities[index]["checked"];
-    });
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -45,12 +36,7 @@ class _HomeState extends State<Home> {
           children: [
             ...cities.map(
               (city) => CityCard(
-                name: city["name"],
-                image: city["image"],
-                checked: city["checked"],
-                updateChecked: () {
-                  switchChecked(city);
-                },
+                city: city,
               ),
             ).toList(),
           ],

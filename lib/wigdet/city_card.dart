@@ -1,12 +1,10 @@
+import 'package:dyma_trip/model/city_model.dart';
 import 'package:flutter/material.dart';
 
 class CityCard extends StatelessWidget {
-  final String name;
-  final String image;
-  final bool checked;
-  final VoidCallback updateChecked;
+  final City city;
 
-  const CityCard({Key? key, required this.name, required this.image, required this.checked, required this.updateChecked}) : super(key: key);
+  const CityCard({Key? key, required this.city,}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -19,38 +17,25 @@ class CityCard extends StatelessWidget {
           children: [
             Ink.image(
                 fit: BoxFit.cover,
-                image: AssetImage(image),
+                image: AssetImage(city.image),
                 child: InkWell(
-                onTap: updateChecked,
+                onTap: () {},
               ),
             ),
-            Padding(
-              padding: EdgeInsets.all(10),
-              child: Column(
-                children: [
-                  Expanded(
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.end,
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Icon(checked ? Icons.star : Icons.star_border,
-                          color: Colors.amberAccent,
-                          size: 30,
-                        ),
-                      ],
+            Positioned(
+                top: 10,
+                left: 10,
+                child: Container(
+                  padding: EdgeInsets.symmetric(horizontal: 10, vertical: 5),
+                  color: Colors.black54,
+                  child: Text(
+                    city.name,
+                    style: TextStyle(
+                      fontSize: 35,
+                      color: Colors.white,
                     ),
                   ),
-                  Row(
-                    children: [
-                      Text(
-                        name,
-                        style: TextStyle(
-                            color: Colors.white, fontSize: 30),
-                      ),
-                    ],
-                  ),
-                ],
-              ),
+                ),
             ),
           ],
         ),

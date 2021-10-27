@@ -7,7 +7,7 @@ import 'package:dyma_trip/data/data_activity.dart' as data;
 
 import '../model/trip_model.dart';
 
-class City extends StatefulWidget {
+class CityView extends StatefulWidget {
   final List<Activity> activities = data.activities;
 
   //----------------------------------------------------------------------------
@@ -28,13 +28,13 @@ class City extends StatefulWidget {
     }
   }
 
-  City({Key? key}) : super(key: key);
+  CityView({Key? key}) : super(key: key);
 
   @override
-  _CityState createState() => _CityState();
+  _CityViewState createState() => _CityViewState();
 }
 
-class _CityState extends State<City> {
+class _CityViewState extends State<CityView> {
   late Trip trip;
   late int index;
 
