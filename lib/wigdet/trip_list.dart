@@ -1,4 +1,6 @@
 import 'package:dyma_trip/model/trip_model.dart';
+import 'package:dyma_trip/view/city_view.dart';
+import 'package:dyma_trip/view/trip_view.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
@@ -17,6 +19,25 @@ class TripList extends StatelessWidget {
             title: Text(trip.city),
             subtitle: trip.date != null ? Text(DateFormat("d/M/y").format(trip.date!)) : Text("N/A"),
             trailing: Icon(Icons.info),
+            onTap: () {
+              Navigator.pushNamed(
+                  context,
+                  TripView.ROUTE_NAME,
+                  arguments: {
+                    "tripId": trip.id,
+                    "cityName": trip.city,
+                  }
+              );
+            },
+            /*onTap: () {
+              Navigator.pushNamed(
+                  context, TripView.ROUTE_NAME,
+                  arguments: {
+                    "tripId": trip.id,
+                    "cityName": trip.city,
+                  }
+              );
+            },*/
           );
         },
     );

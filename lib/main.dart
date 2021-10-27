@@ -1,5 +1,6 @@
 import 'package:dyma_trip/view/city_view.dart';
 import 'package:dyma_trip/view/home_view.dart';
+import 'package:dyma_trip/view/trip_view.dart';
 import 'package:dyma_trip/view/trips_view.dart';
 import 'package:flutter/material.dart';
 import 'data/data_activity.dart';
@@ -58,6 +59,17 @@ class _DymaTripState extends State<DymaTrip> {
                 builder: (context) {
                   return TripsView(trips: trips);
                 }
+            );
+          case TripView.ROUTE_NAME:
+            return MaterialPageRoute(
+                builder: (context) {
+                  String? tripId = (settings.arguments as Map<String, String>)["tripId"];
+                  String? cityName = (settings.arguments as Map<String, String>)["cityName"];
+                  return TripView(
+                    trip: trips.firstWhere((trip) => trip.id == tripId),
+                    city: widget.cities.firstWhere((city) => city.name == cityName),
+                  );
+                },
             );
         }
       },
