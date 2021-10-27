@@ -1,6 +1,6 @@
 import 'package:dyma_trip/view/city_view.dart';
 import 'package:dyma_trip/view/home_view.dart';
-import 'package:dyma_trip/wigdet/trips_view.dart';
+import 'package:dyma_trip/view/trips_view.dart';
 import 'package:flutter/material.dart';
 import 'data/data_activity.dart';
 import 'model/city_model.dart';
@@ -22,7 +22,11 @@ class DymaTrip extends StatefulWidget {
 }
 
 class _DymaTripState extends State<DymaTrip> {
-  late List<Trip> trips = [];
+  late List<Trip> trips = [
+    Trip(activities: [], city: "Los Angeles", date: DateTime.now().add(Duration(days: 2))),
+    Trip(activities: [], city: "Los Angeles", date: DateTime.now().add(Duration(days: 3))),
+    Trip(activities: [], city: "Los Angeles", date: DateTime.now().subtract(Duration(days: 1))),
+  ];
 
   //----------------------------------------------------------------------------
   //----------------------- Save Trip Dialog box -------------------------------

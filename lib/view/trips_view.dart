@@ -31,8 +31,12 @@ class _TripsViewState extends State<TripsView> {
           drawer: DrawerTrip(),
           body: TabBarView(
               children: [
-                TripList(trips: widget.trips),
-                Text("Villes visitées"),
+                TripList(
+                    trips: widget.trips.where((trip) => DateTime.now().isBefore(trip.date!)).toList()
+                ),
+                TripList(
+                    trips: widget.trips.where((trip) => DateTime.now().isAfter(trip.date!)).toList()
+                ),
               ],
           ),
         ),

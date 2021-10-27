@@ -1,5 +1,5 @@
 import 'package:dyma_trip/view/home_view.dart';
-import 'package:dyma_trip/wigdet/trips_view.dart';
+import 'package:dyma_trip/view/trips_view.dart';
 import 'package:flutter/material.dart';
 
 class DrawerTrip extends StatelessWidget {
