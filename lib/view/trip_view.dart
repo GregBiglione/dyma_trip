@@ -1,5 +1,6 @@
 import 'package:dyma_trip/model/city_model.dart';
 import 'package:dyma_trip/model/trip_model.dart';
+import 'package:dyma_trip/wigdet/trip_activities.dart';
 import 'package:dyma_trip/wigdet/trip_city_appbar.dart';
 import 'package:flutter/material.dart';
 
@@ -23,7 +24,7 @@ class _TripViewState extends State<TripView> {
           child: Column(
             children: [
               TripCityAppBar(city: widget.city),
-              Container(height: 800, color: Colors.blue,),
+              TripActivities(activities: widget.trip.activities),
             ],
           ),
         ),
