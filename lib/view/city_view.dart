@@ -113,9 +113,14 @@ class _CityViewState extends State<CityView> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        leading: Icon(
+        leading: IconButton(
+          icon: Icon(Icons.arrow_back),
+          onPressed: () {
+            Navigator.pop(context);
+          },
+        ),/*Icon(
           Icons.chevron_left
-        ),
+        ),*/
         title: Text("Organisation du voyage"),
         actions: [
           Icon(Icons.more_vert),
