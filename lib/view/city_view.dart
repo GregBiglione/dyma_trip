@@ -1,4 +1,5 @@
 import 'package:dyma_trip/model/activity_model.dart';
+import 'package:dyma_trip/model/city_model.dart';
 import 'package:dyma_trip/wigdet/activity_list.dart';
 import 'package:dyma_trip/wigdet/trip_activity_list.dart';
 import 'package:dyma_trip/wigdet/trip_overview.dart';
@@ -111,6 +112,8 @@ class _CityViewState extends State<CityView> {
 
   @override
   Widget build(BuildContext context) {
+    final City city = ModalRoute.of(context)!.settings.arguments as City;
+
     return Scaffold(
       appBar: AppBar(
         leading: IconButton(
@@ -118,9 +121,7 @@ class _CityViewState extends State<CityView> {
           onPressed: () {
             Navigator.pop(context);
           },
-        ),/*Icon(
-          Icons.chevron_left
-        ),*/
+        ),
         title: Text("Organisation du voyage"),
         actions: [
           Icon(Icons.more_vert),
@@ -130,7 +131,7 @@ class _CityViewState extends State<CityView> {
         child: widget.showContext(
             context: context,
             children: [
-              TripOverview(trip: trip, setDate: setDate),
+              TripOverview(cityName: city.name, trip: trip, setDate: setDate),
               Expanded(
                 child: index == 0 ? ActivityList(
                   activities: widget.activities,

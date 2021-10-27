@@ -5,8 +5,9 @@ import 'package:intl/intl.dart';
 class TripOverview extends StatelessWidget {
   final Trip trip;
   final VoidCallback setDate;
+  final String cityName;
 
-  const TripOverview({Key? key, required this.trip, required this.setDate}) : super(key: key);
+  const TripOverview({Key? key, required this.trip, required this.setDate, required this.cityName}) : super(key: key);
 
   //----------------------------------------------------------------------------
   //----------------------- Get trip price -------------------------------------
@@ -29,7 +30,8 @@ class TripOverview extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text("Los Angeles",
+          Text(
+            cityName,
             style: TextStyle(fontSize: 25, decoration: TextDecoration.underline,
             ),
           ),
