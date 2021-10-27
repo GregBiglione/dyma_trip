@@ -16,12 +16,26 @@ class TripsView extends StatefulWidget {
 class _TripsViewState extends State<TripsView> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text("Mes voyages"),
-      ),
-      drawer: DrawerTrip(),
-      body: TripList(trips: widget.trips),
+    return DefaultTabController(
+        length: 2,
+        child: Scaffold(
+          appBar: AppBar(
+            title: Text("Mes voyages"),
+            bottom: TabBar(
+                tabs: [
+                  Tab(text: "Prochains voyages", icon: Icon(Icons.flight_takeoff_outlined),),
+                  Tab(text: "Villes visitées", icon: Icon(Icons.flight_land_outlined),)
+                ],
+            ),
+          ),
+          drawer: DrawerTrip(),
+          body: TabBarView(
+              children: [
+                TripList(trips: widget.trips),
+                Text("Villes visitées"),
+              ],
+          ),
+        ),
     );
   }
 }
