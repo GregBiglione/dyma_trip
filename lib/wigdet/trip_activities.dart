@@ -1,4 +1,5 @@
 import 'package:dyma_trip/model/activity_model.dart';
+import 'package:dyma_trip/wigdet/to_do_activities.dart';
 import 'package:flutter/material.dart';
 
 class TripActivities extends StatelessWidget {
@@ -28,6 +29,8 @@ class TripActivities extends StatelessWidget {
               child: TabBarView(
                 physics: NeverScrollableScrollPhysics(),
                 children: [
+                  ToDoActivities(activities: activities),
+                  ToDoActivities(activities: activities),
                 ],
               ),
             )

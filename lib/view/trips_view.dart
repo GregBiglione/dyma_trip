@@ -30,6 +30,7 @@ class _TripsViewState extends State<TripsView> {
           ),
           drawer: DrawerTrip(),
           body: TabBarView(
+              physics: NeverScrollableScrollPhysics(),
               children: [
                 TripList(
                     trips: widget.trips.where((trip) => DateTime.now().isBefore(trip.date!)).toList()
