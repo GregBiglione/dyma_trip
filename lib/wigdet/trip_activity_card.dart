@@ -24,7 +24,7 @@ class _TripActivityCardState extends State<TripActivityCard> {
         trailing: IconButton(
           icon: Icon(Icons.delete), color: Colors.red,
           onPressed: () {
-            widget.deleteTripActivity(widget.activity.id);
+            widget.deleteTripActivity(widget.activity);
             ScaffoldMessenger.of(context).showSnackBar(SnackBar(
               content: Text("Activité supprimée"),
               backgroundColor: Colors.red,
