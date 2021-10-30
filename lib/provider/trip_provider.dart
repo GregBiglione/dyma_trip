@@ -17,4 +17,12 @@ class TripProvider with ChangeNotifier {
     _trips.add(trip);
     notifyListeners();
   }
+
+  //----------------------------------------------------------------------------
+  //----------------------- Get cities by name ---------------------------------
+  //----------------------------------------------------------------------------
+
+  Trip getTripById(String tripId){
+    return trips.firstWhere((trip) => trip.id == tripId);
+  }
 }
