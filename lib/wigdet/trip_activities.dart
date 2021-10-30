@@ -3,9 +3,9 @@ import 'package:dyma_trip/wigdet/to_do_activities.dart';
 import 'package:flutter/material.dart';
 
 class TripActivities extends StatelessWidget {
-  final List<Activity> activities;
+  final String tripId;
 
-  const TripActivities({Key? key, required this.activities}) : super(key: key);
+  const TripActivities({Key? key, required this.tripId,}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -30,11 +30,11 @@ class TripActivities extends StatelessWidget {
                 physics: NeverScrollableScrollPhysics(),
                 children: [
                   ToDoActivities(
-                    activities: activities.where((activity) => activity.status == ActivityStatus.toDo).toList(),
+                    tripId: tripId,
                     filter: ActivityStatus.toDo,
                   ),
                   ToDoActivities(
-                    activities: activities.where((activity) => activity.status == ActivityStatus.done).toList(),
+                    tripId: tripId,
                     filter: ActivityStatus.done,
                   ),
                 ],
