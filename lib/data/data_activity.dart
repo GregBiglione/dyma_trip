@@ -16,7 +16,8 @@ List<Trip> trips = [
 
 List<Activity> losAngelesActivities = [
   Activity(id: "la1", name: "Les studios Universal", image: "assets/images/activities/universal_studios.jpg", city: "Los Angeles", price: 35.00),
-  Activity(id: "la2", name: "Venice beach", image: "assets/images/activities/venice_beach.jpg", city: "Los Angeles", price: 0.00),
+  Activity(id: "la2", name: "Venice beach", image: "assets/images/activities/venice_beach.jpg", city: "Los Angeles", price: 0.00,
+      status: ActivityStatus.done),
   Activity(id: "la3", name: "Hollywood sign", image: "assets/images/activities/hollywood_sign.jpg", city: "Los Angeles", price: 15.00),
   Activity(id: "la4", name: "Santa Monica", image: "assets/images/activities/santa_monica.jpg", city: "Los Angeles", price: 0.00),
   Activity(id: "la5", name: "Hollywood walk", image: "assets/images/activities/hollywood_walk.jpg", city: "Los Angeles", price: 0.00),

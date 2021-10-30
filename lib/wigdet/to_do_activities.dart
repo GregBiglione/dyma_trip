@@ -3,8 +3,9 @@ import 'package:flutter/material.dart';
 
 class ToDoActivities extends StatelessWidget {
   final List<Activity> activities;
+  final ActivityStatus filter;
 
-  const ToDoActivities({Key? key, required this.activities}) : super(key: key);
+  const ToDoActivities({Key? key, required this.activities, required this.filter}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -14,7 +15,7 @@ class ToDoActivities extends StatelessWidget {
         Activity activity = activities[i];
         return Container(
           margin: EdgeInsets.symmetric(horizontal: 10),
-          child: Dismissible(
+          child: filter == ActivityStatus.toDo ? Dismissible(
             direction: DismissDirection.endToStart,
             background: Container(
               padding: EdgeInsets.symmetric(horizontal: 15),
@@ -34,6 +35,13 @@ class ToDoActivities extends StatelessWidget {
             onDismissed: (_) {
               print("Activity dismissed");
             },
+          ) : Card(
+            child: ListTile(
+              title: Text(activity.name, style: TextStyle(color: Colors.grey),
+              ),
+              trailing: Icon(Icons.check_circle, color: Colors.green[700], size: 30,
+              ),
+            ),
           ),
         );
       },

@@ -8,6 +8,5 @@ class Activity{
   late double price;
   late ActivityStatus status;
 
-  Activity({required this.id, required this.name, required this.image, required this.city, required this.price,}) :
-   status = ActivityStatus.toDo;
+  Activity({required this.id, required this.name, required this.image, required this.city, required this.price, this.status = ActivityStatus.toDo});
 }
