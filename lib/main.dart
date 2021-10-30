@@ -1,8 +1,10 @@
+import 'package:dyma_trip/provider/city_provider.dart';
 import 'package:dyma_trip/view/city_view.dart';
 import 'package:dyma_trip/view/home_view.dart';
 import 'package:dyma_trip/view/trip_view.dart';
 import 'package:dyma_trip/view/trips_view.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'data/data_activity.dart';
 import 'model/city_model.dart';
 import 'package:dyma_trip/data/data_activity.dart' as data;
@@ -24,9 +26,18 @@ class DymaTrip extends StatefulWidget {
 
 class _DymaTripState extends State<DymaTrip> {
   late List<Trip> trips = [
-    Trip(activities: [], city: "Los Angeles", date: DateTime.now().add(Duration(days: 2))),
-    Trip(activities: [], city: "Los Angeles", date: DateTime.now().add(Duration(days: 3))),
-    Trip(activities: [], city: "Los Angeles", date: DateTime.now().subtract(Duration(days: 1))),
+    Trip(
+        activities: [],
+        city: "Los Angeles",
+        date: DateTime.now().add(Duration(days: 2))),
+    Trip(
+        activities: [],
+        city: "Los Angeles",
+        date: DateTime.now().add(Duration(days: 3))),
+    Trip(
+        activities: [],
+        city: "Los Angeles",
+        date: DateTime.now().subtract(Duration(days: 1))),
   ];
 
   //----------------------------------------------------------------------------
@@ -39,10 +50,19 @@ class _DymaTripState extends State<DymaTrip> {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return ChangeNotifierProvider(
+      create: (BuildContext context) {
+        return CityProvider();
+      },
+      child: MaterialApp(
+        debugShowCheckedModeBanner: false,
+        home: HomeView(),
+      ),
+    );
+    /*MaterialApp(
       debugShowCheckedModeBanner: false,
       home: HomeView(cities: widget.cities,),
-      onGenerateRoute: (settings) {
+      */ /*onGenerateRoute: (settings) {
         switch(settings.name) {
           case CityView.ROUTE_NAME:
             return MaterialPageRoute(
@@ -72,7 +92,7 @@ class _DymaTripState extends State<DymaTrip> {
                 },
             );
         }
-      },
-    );
+      },*/ /*
+    );*/
   }
 }

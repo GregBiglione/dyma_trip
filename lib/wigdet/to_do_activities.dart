@@ -1,5 +1,4 @@
 import 'package:dyma_trip/model/activity_model.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class ToDoActivities extends StatelessWidget {
