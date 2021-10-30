@@ -1,5 +1,7 @@
 import 'package:dyma_trip/model/activity_model.dart';
+import 'package:dyma_trip/provider/trip_provider.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class ToDoActivities extends StatelessWidget {
   final List<Activity> activities;
@@ -33,7 +35,7 @@ class ToDoActivities extends StatelessWidget {
               ),
             ),
             onDismissed: (_) {
-              print("Activity dismissed");
+              Provider.of<TripProvider>(context, listen: false).setActivityToDone(activity);
             },
           ) : Card(
             child: ListTile(
