@@ -1,5 +1,4 @@
 import 'package:dyma_trip/model/city_model.dart';
-import 'package:dyma_trip/view/city_view.dart';
 import 'package:flutter/material.dart';
 
 class CityCard extends StatelessWidget {

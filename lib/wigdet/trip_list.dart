@@ -29,15 +29,6 @@ class TripList extends StatelessWidget {
                   }
               );
             },
-            /*onTap: () {
-              Navigator.pushNamed(
-                  context, TripView.ROUTE_NAME,
-                  arguments: {
-                    "tripId": trip.id,
-                    "cityName": trip.city,
-                  }
-              );
-            },*/
           );
         },
     );

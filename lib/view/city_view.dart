@@ -8,7 +8,6 @@ import 'package:dyma_trip/wigdet/drawer.dart';
 import 'package:dyma_trip/wigdet/trip_activity_list.dart';
 import 'package:dyma_trip/wigdet/trip_overview.dart';
 import 'package:flutter/material.dart';
-import 'package:dyma_trip/data/data_activity.dart' as data;
 import 'package:provider/provider.dart';
 
 import '../model/trip_model.dart';
