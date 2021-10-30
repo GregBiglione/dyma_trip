@@ -1,5 +1,7 @@
 import 'package:dyma_trip/model/activity_model.dart';
 import 'package:dyma_trip/model/city_model.dart';
+import 'package:dyma_trip/provider/city_provider.dart';
+import 'package:dyma_trip/provider/trip_provider.dart';
 import 'package:dyma_trip/view/home_view.dart';
 import 'package:dyma_trip/wigdet/activity_list.dart';
 import 'package:dyma_trip/wigdet/drawer.dart';
@@ -7,13 +9,13 @@ import 'package:dyma_trip/wigdet/trip_activity_list.dart';
 import 'package:dyma_trip/wigdet/trip_overview.dart';
 import 'package:flutter/material.dart';
 import 'package:dyma_trip/data/data_activity.dart' as data;
+import 'package:provider/provider.dart';
 
 import '../model/trip_model.dart';
 
 class CityView extends StatefulWidget {
   static const String ROUTE_NAME = "/city";
-  final City city;
-  final Function addTrip;
+  //final Function addTrip;
 
   //final List<Activity> activities = data.activities;
 
@@ -35,7 +37,7 @@ class CityView extends StatefulWidget {
     }
   }
 
-  CityView({Key? key, required this.city, required this.addTrip}) : super(key: key);
+  CityView({Key? key, /*required this.addTrip*/}) : super(key: key);
 
   @override
   _CityViewState createState() => _CityViewState();
@@ -51,7 +53,7 @@ class _CityViewState extends State<CityView> {
 
   @override
   void initState() {
-    trip = Trip(city: widget.city.name, activities: [], date: null);
+    trip = Trip(city: /*widget.city.name*/null, activities: [], date: null);
     index = 0;
     super.initState();
   }
@@ -89,9 +91,9 @@ class _CityViewState extends State<CityView> {
   //----------------------- Get activities list --------------------------------
   //----------------------------------------------------------------------------
 
-  List<Activity> get activities {
-    return widget.city.activities;
-  }
+  /*List<Activity> get activities {
+    return city.activities;
+  }*/
 
   //----------------------------------------------------------------------------
   //----------------------- Get trip price -------------------------------------
@@ -117,7 +119,7 @@ class _CityViewState extends State<CityView> {
   //----------------------- Save Trip Dialog box -------------------------------
   //----------------------------------------------------------------------------
 
-  void saveTrip() async{
+  void saveTrip(String cityName) async{
     final result = await showDialog(
         context: context,
         builder: (context) {
@@ -171,7 +173,9 @@ class _CityViewState extends State<CityView> {
       );
     }
     else if(result == "Save"){
-      widget.addTrip(trip);
+      //widget.addTrip(trip);
+      trip.city = cityName;
+      Provider.of<TripProvider>(context, listen: false).addTrip(trip);
       Navigator.pushNamed(context, HomeView.ROUTE_NAME);
     }
   }
@@ -188,7 +192,8 @@ class _CityViewState extends State<CityView> {
 
   @override
   Widget build(BuildContext context) {
-    //final City city = ModalRoute.of(context)!.settings.arguments as City;
+    String cityName = ModalRoute.of(context)!.settings.arguments as String;
+    City city = Provider.of<CityProvider>(context).getCitiesByName(cityName);
 
     return Scaffold(
       appBar: AppBar(
@@ -202,10 +207,10 @@ class _CityViewState extends State<CityView> {
         child: widget.showContext(
             context: context,
             children: [
-              TripOverview(cityName: widget.city.name, trip: trip, setDate: setDate, amount: amount,),
+              TripOverview(cityName: city.name, trip: trip, setDate: setDate, amount: amount,),
               Expanded(
                 child: index == 0 ? ActivityList(
-                  activities: widget.city.activities,
+                  activities: city.activities,
                   selectedActivities: trip.activities,
                   toggleActivity: toggleActivity,
                 ) : TripActivityList(
@@ -218,7 +223,9 @@ class _CityViewState extends State<CityView> {
       ),
       floatingActionButton: FloatingActionButton(
         child: Icon(Icons.check),
-        onPressed: saveTrip,
+        onPressed: () {
+          saveTrip(city.name);
+        },
       ),
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: index,

@@ -1,17 +1,20 @@
 import 'dart:collection';
 
-import 'package:dyma_trip/model/city_model.dart';
+import 'package:dyma_trip/model/trip_model.dart';
 import 'package:flutter/material.dart';
 import 'package:dyma_trip/data/data_activity.dart' as data;
 
-class CityProvider with ChangeNotifier {
-  final List<City> _cities = data.cities;
+class TripProvider with ChangeNotifier {
+  final List<Trip> _trips = data.trips;
 
-  UnmodifiableListView<City> get cities => UnmodifiableListView(_cities);
+  UnmodifiableListView<Trip> get trips => UnmodifiableListView(_trips);
 
   //----------------------------------------------------------------------------
   //----------------------- Get cities by name ---------------------------------
   //----------------------------------------------------------------------------
 
-  City getCitiesByName(String cityName) => cities.firstWhere((city) => city.name == cityName);
+  void addTrip(Trip trip) {
+    _trips.add(trip);
+    notifyListeners();
+  }
 }

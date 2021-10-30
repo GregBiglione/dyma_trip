@@ -16,7 +16,7 @@ class TripList extends StatelessWidget {
         itemBuilder: (context, i) {
           var trip = trips[i];
           return ListTile(
-            title: Text(trip.city),
+            title: Text(trip.city!),
             subtitle: trip.date != null ? Text(DateFormat("d/M/y").format(trip.date!)) : Text("N/A"),
             trailing: Icon(Icons.info),
             onTap: () {

@@ -1,10 +1,17 @@
 import 'package:dyma_trip/model/activity_model.dart';
 import 'package:dyma_trip/model/city_model.dart';
+import 'package:dyma_trip/model/trip_model.dart';
 
 List<City> cities = [
   City(name: "Los Angeles", image: "assets/images/los_angeles.jpg", activities: losAngelesActivities),
   City(name: "Londres", image: "assets/images/london.jpg", activities: []),
   City(name: "Stockholm", image: "assets/images/stockholm.jpg", activities: []),
+];
+
+List<Trip> trips = [
+  Trip(activities: [], city: "Los Angeles", date: DateTime.now().add(Duration(days: 2))),
+  Trip(activities: [], city: "Los Angeles", date: DateTime.now().add(Duration(days: 3))),
+  Trip(activities: [], city: "Los Angeles", date: DateTime.now().subtract(Duration(days: 1))),
 ];
 
 List<Activity> losAngelesActivities = [
