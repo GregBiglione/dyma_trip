@@ -248,7 +248,7 @@ mongoose
        image: "http://10.0.2.2/assets/images/milan.jpg",
        activities: [
          {
-           image: "http://10.0.2.2/assets/images/activities/duomo.jpg",
+           image: "http://10.0.2.2/assets/images/activities/cathedral.jpg",
            name: "Cathédrale de Milan",
            city: "Milan",
            price: 12.0

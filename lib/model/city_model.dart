@@ -16,6 +16,8 @@ class City {
         id = json["_id"],
         name = json["name"],
         image = json["image"],
-        activities = (json["activities"] as List).map((activityJson) => Activity.fromJson(activityJson)).toList();
+        activities = (json["activities"] as List)
+            .map((activityJson) => Activity.fromJson(activityJson))
+            .toList();
 
 }
