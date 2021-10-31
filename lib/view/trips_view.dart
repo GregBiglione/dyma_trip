@@ -1,6 +1,7 @@
 import 'package:dyma_trip/model/trip_model.dart';
 import 'package:dyma_trip/provider/trip_provider.dart';
 import 'package:dyma_trip/wigdet/drawer.dart';
+import 'package:dyma_trip/wigdet/dyma_loader.dart';
 import 'package:dyma_trip/wigdet/trip_list.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -12,7 +13,7 @@ class TripsView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    List<Trip> trips = Provider.of<TripProvider>(context).trips;
+    TripProvider tripProvider = Provider.of<TripProvider>(context);
 
     return DefaultTabController(
         length: 2,
@@ -27,17 +28,20 @@ class TripsView extends StatelessWidget {
             ),
           ),
           drawer: DrawerTrip(),
-          body: TabBarView(
+          body: tripProvider.isLoading != true ? tripProvider.trips.isNotEmpty ? TabBarView(
               physics: NeverScrollableScrollPhysics(),
               children: [
                 TripList(
-                    trips: trips.where((trip) => DateTime.now().isBefore(trip.date!)).toList()
+                    trips: tripProvider.trips.where((trip) => DateTime.now().isBefore(trip.date!)).toList()
                 ),
                 TripList(
-                    trips: trips.where((trip) => DateTime.now().isAfter(trip.date!)).toList()
+                    trips: tripProvider.trips.where((trip) => DateTime.now().isAfter(trip.date!)).toList()
                 ),
               ],
-          ),
+          ): Container(
+            alignment: Alignment.center,
+            child: Text("Aucun voyage pour le moment"),
+          ): DymaLoader(),
         ),
     );
   }

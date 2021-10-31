@@ -9,19 +9,23 @@ import 'dart:convert';
 class TripProvider with ChangeNotifier {
   String host = "http://10.0.2.2:80";
   List<Trip> _trips = [];
+  bool isLoading = false;
 
   UnmodifiableListView<Trip> get trips => UnmodifiableListView(_trips);
 
   Future<void> fetchData() async {
     try {
+      isLoading = true;
       http.Response response = await http.get(Uri.parse("$host/api/trips"));
       if(response.statusCode == 200){
         _trips = (json.decode(response.body) as List)
             .map((tripJson) => Trip.fromJson(tripJson))
             .toList();
+        isLoading = false;
         notifyListeners();
       }
     } catch (e) {
+      isLoading = false;
       rethrow;
     }
   }
