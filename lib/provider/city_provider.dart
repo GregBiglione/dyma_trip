@@ -10,7 +10,7 @@ class CityProvider with ChangeNotifier {
 
   UnmodifiableListView<City> get cities => UnmodifiableListView(_cities);
 
-  void fetchData() async {
+  Future<void> fetchData() async {
     try {
       http.Response response = await http.get(Uri.parse("http://10.0.2.2:80/api/cities"));
       if(response.statusCode == 200){

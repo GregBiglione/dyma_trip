@@ -9,9 +9,6 @@ import 'package:provider/provider.dart';
 
 class HomeView extends StatefulWidget {
   static String ROUTE_NAME = "/";
-  //final List<City> cities;
-
-  //const HomeView({Key? key, required this.cities}) : super(key: key);
 
   @override
   _HomeViewState createState() {
@@ -32,16 +29,14 @@ class _HomeViewState extends State<HomeView> {
       drawer: DrawerTrip(),
       body: Container(
         padding: EdgeInsets.all(10),
-        child: cities.isNotEmpty ? Column(
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: [
-            ...cities.map(
-              (city) => CityCard(
-                city: city,
-              ),
-            ).toList(),
-          ],
-        ) : DymaLoader(),
+        child: RefreshIndicator(
+          onRefresh: Provider.of<CityProvider>(context).fetchData,
+          child:  cities.isNotEmpty ? ListView.builder(
+            itemCount: cities.length,
+            itemBuilder: (_, i) => CityCard(city: cities[i],
+            ),
+          ) : DymaLoader(),
+        )
       ),
     );
   }
