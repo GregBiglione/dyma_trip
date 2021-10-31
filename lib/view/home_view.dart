@@ -2,6 +2,7 @@ import 'package:dyma_trip/model/city_model.dart';
 import 'package:dyma_trip/provider/city_provider.dart';
 import 'package:dyma_trip/wigdet/city_card.dart';
 import 'package:dyma_trip/wigdet/drawer.dart';
+import 'package:dyma_trip/wigdet/dyma_loader.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -31,7 +32,7 @@ class _HomeViewState extends State<HomeView> {
       drawer: DrawerTrip(),
       body: Container(
         padding: EdgeInsets.all(10),
-        child: Column(
+        child: cities.isNotEmpty ? Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
             ...cities.map(
@@ -40,7 +41,7 @@ class _HomeViewState extends State<HomeView> {
               ),
             ).toList(),
           ],
-        ),
+        ) : DymaLoader(),
       ),
     );
   }
