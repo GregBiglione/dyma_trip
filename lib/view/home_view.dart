@@ -17,6 +17,23 @@ class HomeView extends StatefulWidget {
 }
 
 class _HomeViewState extends State<HomeView> {
+  TextEditingController searchController = TextEditingController();
+
+  @override
+  void initState() {
+    searchController.addListener(() { });
+    super.initState();
+  }
+
+  //----------------------------------------------------------------------------
+  //----------------------- Destroy controller ---------------------------------
+  //----------------------------------------------------------------------------
+
+  @override
+  void dispose() {
+    searchController.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -27,16 +44,43 @@ class _HomeViewState extends State<HomeView> {
         title: Text("DymaTrip"),
       ),
       drawer: DrawerTrip(),
-      body: Container(
-        padding: EdgeInsets.all(10),
-        child: RefreshIndicator(
-          onRefresh: Provider.of<CityProvider>(context).fetchData,
-          child:  cities.isNotEmpty ? ListView.builder(
-            itemCount: cities.length,
-            itemBuilder: (_, i) => CityCard(city: cities[i],
+      body: Column(
+        children: [
+          Container(
+            margin: EdgeInsets.only(top: 10),
+            padding: EdgeInsets.symmetric(horizontal: 14),
+            child: Row(
+              children: [
+                Expanded(
+                  child: TextField(
+                    controller: searchController,
+                    decoration: InputDecoration(
+                      hintText: "Rechercher une ville",
+                      prefixIcon: Icon(Icons.search),
+                      ),
+                    ),
+                ),
+                IconButton(icon: Icon(
+                    Icons.clear),
+                    onPressed: () {},
+                ),
+              ],
             ),
-          ) : DymaLoader(),
-        )
+          ),
+          Expanded(
+              child: Container(
+                  padding: EdgeInsets.all(10),
+                  child: RefreshIndicator(
+                    onRefresh: Provider.of<CityProvider>(context).fetchData,
+                    child:  cities.isNotEmpty ? ListView.builder(
+                      itemCount: cities.length,
+                      itemBuilder: (_, i) => CityCard(city: cities[i],
+                      ),
+                    ) : DymaLoader(),
+                  )
+              ),
+          ),
+        ],
       ),
     );
   }
