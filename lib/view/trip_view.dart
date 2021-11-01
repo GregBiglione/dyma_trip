@@ -2,6 +2,7 @@ import 'package:dyma_trip/model/city_model.dart';
 import 'package:dyma_trip/provider/city_provider.dart';
 import 'package:dyma_trip/wigdet/trip_activities.dart';
 import 'package:dyma_trip/wigdet/trip_city_appbar.dart';
+import 'package:dyma_trip/wigdet/trip_weather.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -22,6 +23,7 @@ class TripView extends StatelessWidget {
           child: Column(
             children: [
               TripCityAppBar(city: city),
+              TripWeather(cityName: cityName),
               TripActivities(tripId: tripId!,),
             ],
           ),
