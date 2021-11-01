@@ -1,8 +1,7 @@
 import 'package:dyma_trip/model/activity_model.dart';
-import 'package:flutter/cupertino.dart';
 
 class Trip {
-  late String? id;
+  String? id;
   late String? city;
   late List<Activity> activities;
   late DateTime? date;
@@ -21,4 +20,28 @@ class Trip {
             .map((activityJson) => Activity.fromJson(activityJson))
             .toList();
 
+  //----------------------------------------------------------------------------
+  //----------------------- Transform trip to JSON -----------------------------
+  //----------------------------------------------------------------------------
+
+  Map<String, dynamic> toJson() {
+    if (id != null) {
+      return {
+            "_id": id,
+            "city": city,
+            "date": date!.toIso8601String(),
+            "activities": activities
+                .map((activity) => activity.toJson())
+                .toList(),
+          };
+    } else {
+      return {
+        "city": city,
+        "date": date!.toIso8601String(),
+        "activities": activities
+            .map((activity) => activity.toJson())
+            .toList(),
+      };
+    }
+  }
 }

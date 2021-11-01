@@ -21,4 +21,23 @@ class Activity{
         city = json["city"],
         price = json["price"].toDouble(),
         status = json["status"] == 0 ? ActivityStatus.toDo : ActivityStatus.done;
+
+  //----------------------------------------------------------------------------
+  //----------------------- Transform activity to JSON -------------------------
+  //----------------------------------------------------------------------------
+
+  Map<String, dynamic> toJson() {
+    Map<String, dynamic> value = {
+      "_id": id,
+      "name": name,
+      "image": image,
+      "city": city,
+      "price": price,
+      "status": status == ActivityStatus.toDo ? 0 : 1,
+    };
+    if(id != null){
+      value["_id"] = id;
+    }
+    return value;
+  }
 }
