@@ -8,10 +8,51 @@ class ActivityForm extends StatefulWidget {
 }
 
 class _ActivityFormState extends State<ActivityForm> {
+  final GlobalKey formKey = GlobalKey();
+
   @override
   Widget build(BuildContext context) {
     return Container(
-      child: Text("Form"),
+      padding: EdgeInsets.all(15),
+      child: Form(
+        key: formKey,
+        child: Column(
+          children: [
+            TextFormField(
+              decoration: InputDecoration(
+                hintText: "Nom",
+              ),
+            ),
+            SizedBox(height: 10,),
+            TextFormField(
+              decoration: InputDecoration(
+                hintText: "Prix",
+              ),
+            ),
+            SizedBox(height: 10,),
+            TextFormField(
+              decoration: InputDecoration(
+                hintText: "Url",
+              ),
+            ),
+            SizedBox(height: 30,),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.end,
+              children: [
+                ElevatedButton(
+                  onPressed: () => Navigator.pop(context),
+                  child: Text("Annuler"),
+                ),
+                SizedBox(width: 30,),
+                ElevatedButton(
+                  onPressed: () => Navigator.pop(context),
+                  child: Text("Sauvegarder"),
+                ),
+              ],
+            ),
+          ],
+        ),
+      ),
     );
   }
 }
