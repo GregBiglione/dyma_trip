@@ -1,5 +1,6 @@
 import 'package:dyma_trip/provider/city_provider.dart';
 import 'package:dyma_trip/provider/trip_provider.dart';
+import 'package:dyma_trip/view/activity_form_view.dart';
 import 'package:dyma_trip/view/city_view.dart';
 import 'package:dyma_trip/view/home_view.dart';
 import 'package:dyma_trip/view/trip_view.dart';
@@ -74,6 +75,7 @@ class _DymaTripState extends State<DymaTrip> {
           CityView.ROUTE_NAME: (_) => CityView(),
           TripsView.ROUTE_NAME: (_) => TripsView(),
           TripView.ROUTE_NAME: (_) => TripView(),
+          ActivityFormView.ROUTE_NAME: (_) => ActivityFormView(),
         },
         //home: HomeView(),
       ),

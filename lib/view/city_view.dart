@@ -11,6 +11,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import '../model/trip_model.dart';
+import 'activity_form_view.dart';
 
 class CityView extends StatefulWidget {
   static const String ROUTE_NAME = "/city";
@@ -198,7 +199,10 @@ class _CityViewState extends State<CityView> {
       appBar: AppBar(
         title: Text("Organisation du voyage"),
         actions: [
-          Icon(Icons.more_vert),
+          IconButton(
+            icon: Icon(Icons.add),
+            onPressed: () => Navigator.pushNamed(context, ActivityFormView.ROUTE_NAME)
+          ),
         ],
       ),
       drawer: DrawerTrip(),
