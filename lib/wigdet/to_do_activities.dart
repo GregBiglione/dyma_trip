@@ -37,17 +37,17 @@ class ToDoActivities extends StatelessWidget {
                   key: ValueKey(activity.id),
                   child: Card(
                     child: ListTile(
-                      title: Text(activity.name),
+                      title: Text(activity.name!),
                     ),
                   ),
                   confirmDismiss: (_) {
-                    return Provider.of<TripProvider>(context, listen: false).updateTrip(trip, activity.id)
+                    return Provider.of<TripProvider>(context, listen: false).updateTrip(trip, activity.id!)
                         .then((_) => true)
                         .catchError((_) => false);
                   },
                 ) : Card(
                   child: ListTile(
-                    title: Text(activity.name, style: TextStyle(color: Colors.grey),
+                    title: Text(activity.name!, style: TextStyle(color: Colors.grey),
                     ),
                     trailing: Icon(Icons.check_circle, color: Colors.green[700], size: 30,
                     ),

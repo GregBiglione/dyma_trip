@@ -201,7 +201,9 @@ class _CityViewState extends State<CityView> {
         actions: [
           IconButton(
             icon: Icon(Icons.add),
-            onPressed: () => Navigator.pushNamed(context, ActivityFormView.ROUTE_NAME)
+            onPressed: () => Navigator.pushNamed(
+                context, ActivityFormView.ROUTE_NAME,
+                arguments: cityName),
           ),
         ],
       ),
