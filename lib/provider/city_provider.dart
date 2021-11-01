@@ -12,11 +12,20 @@ class CityProvider with ChangeNotifier {
 
   UnmodifiableListView<City> get cities => UnmodifiableListView(_cities);
 
+  UnmodifiableListView<City> filteredCities(String filter) =>
+      UnmodifiableListView(
+        _cities.where(
+          (city) => city.name.toLowerCase().startsWith(
+                filter.toLowerCase(),
+              ),
+        ).toList(),
+      );
+
   Future<void> fetchData() async {
     try {
       isLoading = true;
       http.Response response = await http.get(Uri.parse("$host/api/cities"));
-      if(response.statusCode == 200){
+      if (response.statusCode == 200) {
         _cities = (json.decode(response.body) as List)
             .map((cityJson) => City.fromJson(cityJson))
             .toList();
@@ -33,5 +42,6 @@ class CityProvider with ChangeNotifier {
   //----------------------- Get cities by name ---------------------------------
   //----------------------------------------------------------------------------
 
-  City getCitiesByName(String cityName) => cities.firstWhere((city) => city.name == cityName);
+  City getCitiesByName(String cityName) =>
+      cities.firstWhere((city) => city.name == cityName);
 }
