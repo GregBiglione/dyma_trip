@@ -43,7 +43,7 @@ class CityProvider with ChangeNotifier {
   //----------------------- Get cities by name ---------------------------------
   //----------------------------------------------------------------------------
 
-  City getCitiesByName(String cityName) =>
+  City getCityByName(String cityName) =>
       cities.firstWhere((city) => city.name == cityName);
 
   //----------------------------------------------------------------------------
@@ -52,7 +52,7 @@ class CityProvider with ChangeNotifier {
 
   Future<void> addActivityToCity(Activity newActivity) async {
     try {
-      String cityId = getCitiesByName(newActivity.city).id;
+      String cityId = getCityByName(newActivity.city).id;
       http.Response response = await http.post(Uri.parse("$host/api/city/$cityId/activity"),
               body: json.encode(newActivity.toJson(),),
               headers: {"Content-type": "application/json"},
@@ -67,4 +67,21 @@ class CityProvider with ChangeNotifier {
       rethrow;
     }
   }
+
+  //----------------------------------------------------------------------------
+  //----------------------- Check already existing activity --------------------
+  //----------------------------------------------------------------------------
+
+  Future<dynamic> verifyIfActivityNameIsUnique(String cityName, String activityName) async {
+    try {
+      City city = getCityByName(cityName);
+      http.Response response = await http.get(Uri.parse("$host/api/city/${city.id}/activities/verify/$activityName"));
+      if(response.body != null) {
+        return json.decode(response.body);
+      }
+    } catch (e) {
+      rethrow;
+    }
+  }
+
 }

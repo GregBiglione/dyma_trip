@@ -39,6 +39,17 @@ app.get("/api/trips", async (req, res) => {
   }
 });
 
+//----------------------- Verify uniqueness of an activity -----------------------------------------
+
+app.get("/api/city/:cityId/activities/verify/:activityName", async (req, res) => {
+  const { cityId, activityName } = req.params;
+  const city = await City.findById(cityId).exec();
+  const index = city.activities.findIndex(
+    activity => activity.name === activityName
+  );
+  index == -1 ? res.json(null) : res.json("L'activité existe déjà");
+});
+
 app.post("/api/trip", async (req, res) => {
   try {
     const body = req.body;

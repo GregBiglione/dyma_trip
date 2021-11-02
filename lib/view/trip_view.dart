@@ -15,7 +15,7 @@ class TripView extends StatelessWidget {
   Widget build(BuildContext context) {
     final String? tripId = (ModalRoute.of(context)!.settings.arguments as Map<String?, String?>)["tripId"];
     final String? cityName = (ModalRoute.of(context)!.settings.arguments as Map<String?, String?>)["cityName"];
-    final City city = Provider.of<CityProvider>(context, listen: false).getCitiesByName(cityName!);
+    final City city = Provider.of<CityProvider>(context, listen: false).getCityByName(cityName!);
 
     return Scaffold(
       body: SingleChildScrollView(
