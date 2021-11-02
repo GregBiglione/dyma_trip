@@ -12,7 +12,9 @@ class ActivityForm extends StatefulWidget {
 
 class _ActivityFormState extends State<ActivityForm> {
   final GlobalKey<FormState> _formKey = GlobalKey();
-  late Activity newActivity;
+  late Activity _newActivity;
+  late FocusNode _priceFocusNode;
+  late FocusNode _urlFocusNode;
 
   //----------------------------------------------------------------------------
   //----------------------- Get form state -------------------------------------
@@ -28,14 +30,27 @@ class _ActivityFormState extends State<ActivityForm> {
 
   @override
   void initState() {
-    newActivity = Activity(
+    _newActivity = Activity(
       name: null,
       image: null,
       city: widget.cityName,
       price: 0,
       status: ActivityStatus.toDo
     );
+    _priceFocusNode = FocusNode();
+    _urlFocusNode = FocusNode();
     super.initState();
+  }
+
+  //----------------------------------------------------------------------------
+  //----------------------- Destroy nodeFocus ----------------------------------
+  //----------------------------------------------------------------------------
+
+  @override
+  void dispose() {
+    _priceFocusNode.dispose();
+    _urlFocusNode.dispose();
+    super.dispose();
   }
 
   //----------------------------------------------------------------------------
@@ -60,6 +75,7 @@ class _ActivityFormState extends State<ActivityForm> {
         child: Column(
           children: [
             TextFormField(
+              autofocus: true,
               keyboardType: TextInputType.text,
               decoration: InputDecoration(
                 hintText: "Nom",
@@ -70,11 +86,14 @@ class _ActivityFormState extends State<ActivityForm> {
                 }
                 return null;
               },
-              onSaved: (value) => newActivity.name = value!,
+              textInputAction: TextInputAction.next,
+              onSaved: (value) => _newActivity.name = value!,
+              onFieldSubmitted: (_) => FocusScope.of(context).requestFocus(_priceFocusNode),
             ),
             SizedBox(height: 10,),
             TextFormField(
               keyboardType: TextInputType.number,
+              focusNode: _priceFocusNode,
               decoration: InputDecoration(
                 hintText: "Prix",
               ),
@@ -84,13 +103,16 @@ class _ActivityFormState extends State<ActivityForm> {
                 }
                 return null;
               },
-              onSaved: (value) => newActivity.price = double.parse(value!),
+              textInputAction: TextInputAction.next,
+              onSaved: (value) => _newActivity.price = double.parse(value!),
+              onFieldSubmitted: (_) => FocusScope.of(context).requestFocus(_urlFocusNode),
             ),
             SizedBox(height: 10,),
             TextFormField(
               keyboardType: TextInputType.url,
+              focusNode: _urlFocusNode,
               decoration: InputDecoration(
-                hintText: "Url",
+                hintText: "Url image",
               ),
               validator: (value) {
                 if(value == null || value.isEmpty) {
@@ -98,7 +120,8 @@ class _ActivityFormState extends State<ActivityForm> {
                 }
                 return null;
               },
-              onSaved: (value) => newActivity.image = value!,
+              onSaved: (value) => _newActivity.image = value!,
+              onFieldSubmitted: (_) => submitForm,
             ),
             SizedBox(height: 30,),
             Row(
