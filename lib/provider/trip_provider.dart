@@ -68,14 +68,14 @@ class TripProvider with ChangeNotifier {
   //----------------------- Set activity to done -------------------------------
   //----------------------------------------------------------------------------
 
-  Future <void> updateTrip(Trip trip, String activityId) async {
+  Future<void> updateTrip(Trip trip, String activityId) async {
     try {
       Activity activity = trip.activities
               .firstWhere((activity) => activity.id == activityId);
               activity.status = ActivityStatus.done;
       http.Response response = await http.put(Uri.parse("$host/api/trip"),
             body: json.encode(trip.toJson()),
-            headers: { "Content-type": "application/json" },
+            headers: {"Content-type": "application/json"},
           );
       if(response.statusCode != 200){
         activity.status = ActivityStatus.toDo;

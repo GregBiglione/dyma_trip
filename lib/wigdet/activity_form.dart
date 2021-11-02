@@ -1,5 +1,7 @@
 import 'package:dyma_trip/model/activity_model.dart';
+import 'package:dyma_trip/provider/city_provider.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class ActivityForm extends StatefulWidget {
   final String cityName;
@@ -15,6 +17,7 @@ class _ActivityFormState extends State<ActivityForm> {
   late Activity _newActivity;
   late FocusNode _priceFocusNode;
   late FocusNode _urlFocusNode;
+  bool _isLoading = false;
 
   //----------------------------------------------------------------------------
   //----------------------- Get form state -------------------------------------
@@ -57,12 +60,17 @@ class _ActivityFormState extends State<ActivityForm> {
   //----------------------- Submit form ----------------------------------------
   //----------------------------------------------------------------------------
 
-  void submitForm() {
-    if(form!.validate()){
-      _formKey.currentState!.save();
-    }
-    else{
-      print("Error");
+  Future<void> submitForm() async {
+    try {
+      if(form!.validate()){
+        setState(() => _isLoading = true);
+        _formKey.currentState!.save();
+        await Provider.of<CityProvider>(context, listen: false).addActivityToCity(_newActivity);
+        Navigator.pop(context);
+      }
+    } catch (e) {
+      setState(() => _isLoading = false);
+      print(e);
     }
   }
 
@@ -121,7 +129,6 @@ class _ActivityFormState extends State<ActivityForm> {
                 return null;
               },
               onSaved: (value) => _newActivity.image = value!,
-              onFieldSubmitted: (_) => submitForm,
             ),
             SizedBox(height: 30,),
             Row(
@@ -133,7 +140,7 @@ class _ActivityFormState extends State<ActivityForm> {
                 ),
                 SizedBox(width: 30,),
                 ElevatedButton(
-                  onPressed: submitForm,
+                  onPressed: _isLoading ? null : submitForm,
                   child: Text("Sauvegarder"),
                 ),
               ],

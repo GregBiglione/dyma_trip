@@ -49,6 +49,25 @@ app.post("/api/trip", async (req, res) => {
   }
 });
 
+//----------------------- Add activity to city -----------------------------------------------------
+
+app.post("/api/city/:cityId/activity", async (req, res) => {
+  try{
+    const cityId = req.params.cityId;
+    const activity = req.body;
+    const city = await City.findOneAndUpdate(
+    { _id: cityId },
+    { $push: {activities: activity} },
+    { new: true }
+    ).exec();
+    setTimeout(() => {
+      res.json(city);
+    }, 3000);
+  } catch (e) {
+    res.status(500).json(e);
+  }
+});
+
 app.put("/api/trip", async (req, res) => {
   try {
     const body = req.body;

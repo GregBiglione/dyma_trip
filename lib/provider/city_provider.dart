@@ -1,5 +1,6 @@
 import 'dart:collection';
 
+import 'package:dyma_trip/model/activity_model.dart';
 import 'package:dyma_trip/model/city_model.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
@@ -44,4 +45,26 @@ class CityProvider with ChangeNotifier {
 
   City getCitiesByName(String cityName) =>
       cities.firstWhere((city) => city.name == cityName);
+
+  //----------------------------------------------------------------------------
+  //----------------------- Add activity to city -------------------------------
+  //----------------------------------------------------------------------------
+
+  Future<void> addActivityToCity(Activity newActivity) async {
+    try {
+      String cityId = getCitiesByName(newActivity.city).id;
+      http.Response response = await http.post(Uri.parse("$host/api/city/$cityId/activity"),
+              body: json.encode(newActivity.toJson(),),
+              headers: {"Content-type": "application/json"},
+          );
+      if(response.statusCode == 200) {
+        int index = _cities.indexWhere((city) => city.id == cityId);
+        _cities[index] = City.fromJson(json.decode(response.body),
+        );
+        notifyListeners();
+      }
+    } catch (e) {
+      rethrow;
+    }
+  }
 }
