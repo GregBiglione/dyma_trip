@@ -1,5 +1,6 @@
 import 'package:dyma_trip/model/activity_model.dart';
 import 'package:dyma_trip/provider/city_provider.dart';
+import 'package:dyma_trip/wigdet/activity_form_image_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -136,7 +137,9 @@ class _ActivityFormState extends State<ActivityForm> {
               },
               onSaved: (value) => _newActivity.image = value!,
             ),
-            SizedBox(height: 30,),
+            SizedBox(height: 10,),
+            ActivityFormImagePicker(),
+            SizedBox(height: 10,),
             Row(
               mainAxisAlignment: MainAxisAlignment.end,
               children: [
