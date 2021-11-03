@@ -16,7 +16,11 @@ class ActivityFormView extends StatelessWidget {
         title: Text("Ajouter une activité"),
       ),
       drawer: DrawerTrip(),
-      body: ActivityForm(cityName: cityName),
+      body: SingleChildScrollView(
+        child: ActivityForm(
+            cityName: cityName
+        ),
+      )
     );
   }
 }
