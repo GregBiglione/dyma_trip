@@ -6,6 +6,21 @@ const path = require("path");
 const City = require("./models/city.model");
 const Trip = require("./models/trip.model");
 
+const multer = require("multer");
+const subpath = "/public/assets/images/activities";
+var storage = multer.diskStorage({
+  destination: function(req, file, cb) {
+    cb(null, path.join(__dirname, subpath));
+  },
+  filename: function(req, file, cb) {
+    cb(null, file.originalname);
+  }
+});
+var upload = multer({
+  storage
+});
+
+
 app.use(cors());
 mongoose.set("debug", true);
 mongoose
@@ -76,6 +91,17 @@ app.post("/api/city/:cityId/activity", async (req, res) => {
     }, 3000);
   } catch (e) {
     res.status(500).json(e);
+  }
+});
+
+//----------------------- Upload activity image ----------------------------------------------------
+
+app.post("/api/activity/image", upload.single("activity"), (req, res, next) => {
+  try{
+    const publicPath = "http://localhost/public/assets/images/activities/${req.file.originalName}";
+    res.json(publicPath || "Error");
+  } catch (e) {
+    next(e);
   }
 });
 

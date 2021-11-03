@@ -1,10 +1,13 @@
 import 'dart:collection';
+import 'dart:io';
 
 import 'package:dyma_trip/model/activity_model.dart';
 import 'package:dyma_trip/model/city_model.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
+import 'package:path/path.dart';
+import 'package:http_parser/http_parser.dart';
 
 class CityProvider with ChangeNotifier {
   String host = "http://10.0.2.2:80";
@@ -78,6 +81,33 @@ class CityProvider with ChangeNotifier {
       http.Response response = await http.get(Uri.parse("$host/api/city/${city.id}/activities/verify/$activityName"));
       if(response.body != null) {
         return json.decode(response.body);
+      }
+    } catch (e) {
+      rethrow;
+    }
+  }
+
+  //----------------------------------------------------------------------------
+  //----------------------- Upload activity image ------------------------------
+  //----------------------------------------------------------------------------
+
+  Future<String> uploadImage(File pickedImage) async {
+    try {
+      var request = http.MultipartRequest("POST", Uri.parse("$host/api/activity/image"),);
+      request.files.add(http.MultipartFile.fromBytes(
+              "activity",
+              pickedImage.readAsBytesSync(),
+              filename: basename(pickedImage.path),
+              contentType: MediaType("multipart", "form-data"),
+          ),
+      );
+      var response = await request.send();
+      if(response.statusCode == 200){
+        var responseData = await response.stream.toBytes();
+        return json.decode(String.fromCharCodes(responseData));
+      }
+      else{
+        throw "Error";
       }
     } catch (e) {
       rethrow;
