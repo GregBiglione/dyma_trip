@@ -4,7 +4,10 @@ import 'package:flutter/material.dart';
 class CityCard extends StatelessWidget {
   final City city;
 
-  const CityCard({Key? key, required this.city,}) : super(key: key);
+  const CityCard({
+    Key? key,
+    required this.city,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -15,33 +18,36 @@ class CityCard extends StatelessWidget {
         child: Stack(
           fit: StackFit.expand,
           children: [
-            Ink.image(
-                fit: BoxFit.cover,
-                image: NetworkImage(city.image),
-                child: InkWell(
-                onTap: () {
-                  Navigator.pushNamed(
-                    context,
-                    "/city",
-                    arguments: city.name,
-                  );
-                },
+            GestureDetector(
+              child: Hero(
+                tag: city.name,
+                child: Image.network(
+                  city.image,
+                  fit: BoxFit.cover,
+                ),
               ),
+              onTap: () {
+                Navigator.pushNamed(
+                  context,
+                  "/city",
+                  arguments: city.name,
+                );
+              },
             ),
             Positioned(
-                top: 10,
-                left: 10,
-                child: Container(
-                  padding: EdgeInsets.symmetric(horizontal: 10, vertical: 5),
-                  color: Colors.black54,
-                  child: Text(
-                    city.name,
-                    style: TextStyle(
-                      fontSize: 35,
-                      color: Colors.white,
-                    ),
+              top: 10,
+              left: 10,
+              child: Container(
+                padding: EdgeInsets.symmetric(horizontal: 10, vertical: 5),
+                color: Colors.black54,
+                child: Text(
+                  city.name,
+                  style: TextStyle(
+                    fontSize: 35,
+                    color: Colors.white,
                   ),
                 ),
+              ),
             ),
           ],
         ),

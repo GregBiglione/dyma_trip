@@ -14,9 +14,12 @@ class TripOverviewCity extends StatelessWidget {
         alignment: Alignment.center,
         fit: StackFit.expand,
         children: [
-          Image.network(
-            cityImage,
-            fit: BoxFit.cover,
+          Hero(
+            tag: cityName,
+            child: Image.network(
+              cityImage,
+              fit: BoxFit.cover,
+            ),
           ),
           Container(
             color: Colors.black54,

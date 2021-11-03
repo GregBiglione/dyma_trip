@@ -212,7 +212,7 @@ class _CityViewState extends State<CityView> {
         child: widget.showContext(
             context: context,
             children: [
-              TripOverview(cityName: city.name, trip: trip, setDate: setDate, amount: amount,),
+              TripOverview(cityName: city.name, trip: trip, setDate: setDate, amount: amount, cityImage: city.image,),
               Expanded(
                 child: index == 0 ? ActivityList(
                   activities: city.activities,
