@@ -1,10 +1,14 @@
 import 'dart:io';
 
+import 'package:dyma_trip/provider/city_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:provider/provider.dart';
 
 class ActivityFormImagePicker extends StatefulWidget {
-  const ActivityFormImagePicker({Key? key}) : super(key: key);
+  final Function updateUrl;
+
+  const ActivityFormImagePicker({Key? key, required this.updateUrl}) : super(key: key);
 
   @override
   _ActivityFormImagePickerState createState() =>
@@ -24,6 +28,9 @@ class _ActivityFormImagePickerState extends State<ActivityFormImagePicker> {
       XFile? pickedFile = await imagePicker.pickImage(source: source);
       _deviceImage = File(pickedFile!.path);
       if(_deviceImage !=  null){
+        final url = await Provider.of<CityProvider>(context, listen: false).uploadImage(_deviceImage!);
+        print("url final $url");
+        widget.updateUrl(url);
         setState(() {});
         print("Image ok");
       }

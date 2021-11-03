@@ -20,6 +20,7 @@ class _ActivityFormState extends State<ActivityForm> {
   late FocusNode _urlFocusNode;
   bool _isLoading = false;
   late String? _nameInputAsync;
+  final TextEditingController _urlController = TextEditingController();
 
   //----------------------------------------------------------------------------
   //----------------------- Get form state -------------------------------------
@@ -82,6 +83,16 @@ class _ActivityFormState extends State<ActivityForm> {
     }
   }
 
+  //----------------------------------------------------------------------------
+  //----------------------- Update url -----------------------------------------
+  //----------------------------------------------------------------------------
+
+  void updateUrlField(String url){
+    setState(() {
+      _urlController.text = url;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -126,6 +137,7 @@ class _ActivityFormState extends State<ActivityForm> {
             TextFormField(
               keyboardType: TextInputType.url,
               focusNode: _urlFocusNode,
+              controller: _urlController,
               decoration: InputDecoration(
                 hintText: "Url image",
               ),
@@ -138,7 +150,7 @@ class _ActivityFormState extends State<ActivityForm> {
               onSaved: (value) => _newActivity.image = value!,
             ),
             SizedBox(height: 10,),
-            ActivityFormImagePicker(),
+            ActivityFormImagePicker(updateUrl: updateUrlField),
             SizedBox(height: 10,),
             Row(
               mainAxisAlignment: MainAxisAlignment.end,
