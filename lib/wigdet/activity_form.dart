@@ -1,7 +1,7 @@
 import 'package:dyma_trip/model/activity_model.dart';
 import 'package:dyma_trip/model/location_activity_model.dart';
 import 'package:dyma_trip/provider/city_provider.dart';
-//import 'package:dyma_trip/wigdet/activity_form_autocomplete.dart';
+import 'package:dyma_trip/wigdet/activity_form_autocomplete.dart';
 import 'package:dyma_trip/wigdet/activity_form_image_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -24,6 +24,7 @@ class _ActivityFormState extends State<ActivityForm> {
   bool _isLoading = false;
   late String? _nameInputAsync;
   final TextEditingController _urlController = TextEditingController();
+  //final TextEditingController _addressController = TextEditingController();
 
   //----------------------------------------------------------------------------
   //----------------------- Get form state -------------------------------------
@@ -56,8 +57,9 @@ class _ActivityFormState extends State<ActivityForm> {
     _addressFocusNode = FocusNode();
     _addressFocusNode.addListener(() async {
       if(_addressFocusNode.hasFocus){
-        //var location = await showInputAutoComplete();
+        var location = await showInputAutoComplete(context);
         print("Focus");
+        _urlFocusNode.requestFocus();
       }
       else{
         print("No focus");
@@ -77,6 +79,7 @@ class _ActivityFormState extends State<ActivityForm> {
     _urlFocusNode.dispose();
     _urlController.dispose();
     _addressFocusNode.dispose();
+    //_addressController.dispose();
     super.dispose();
   }
 
@@ -156,6 +159,7 @@ class _ActivityFormState extends State<ActivityForm> {
             SizedBox(height: 30,),
             TextFormField(
               focusNode: _addressFocusNode,
+              //controller: _addressController,
               decoration: InputDecoration(
                   hintText: "Adresse"
               ),
