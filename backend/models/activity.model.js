@@ -6,6 +6,9 @@ const activitySchema = schema({
   image: { type: String, required: true },
   city: { type: String, required: true },
   price: { type: Number, required: true },
+  address: { type: String },
+  latitude: { type: Number },
+  longitude: { type: Number },
   status: { type: Number, default: 0 }
 });
 

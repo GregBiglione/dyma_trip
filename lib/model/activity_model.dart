@@ -1,3 +1,5 @@
+import 'package:dyma_trip/model/location_activity_model.dart';
+
 enum ActivityStatus { toDo, done }
 
 class Activity{
@@ -7,8 +9,10 @@ class Activity{
   late String city;
   late double price;
   late ActivityStatus status;
+  late LocationActivity location;
 
-  Activity({this.id, required this.name, required this.image, required this.city, required this.price, this.status = ActivityStatus.toDo});
+  Activity({this.id, required this.name, required this.image, required this.city, required this.price, required this.location,
+    this.status = ActivityStatus.toDo});
 
   //----------------------------------------------------------------------------
   //----------------------- Create Activity from JSON --------------------------
