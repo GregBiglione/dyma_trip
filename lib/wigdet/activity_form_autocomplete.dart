@@ -1,6 +1,8 @@
 import 'dart:async';
 
+import 'package:dyma_trip/api/google_api.dart';
 import 'package:dyma_trip/model/location_activity_model.dart';
+import 'package:dyma_trip/model/place_model.dart';
 import 'package:flutter/material.dart';
 
 Future<LocationActivity?> showInputAutoComplete(BuildContext context) {
@@ -18,7 +20,7 @@ class InputAddress extends StatefulWidget {
 }
 
 class _InputAddressState extends State<InputAddress> {
-  List<dynamic> _places = [];
+  List<Place> _places = [];
   Timer? _debounce;
 
   //----------------------------------------------------------------------------
@@ -26,12 +28,31 @@ class _InputAddressState extends State<InputAddress> {
   //----------------------------------------------------------------------------
 
   void _searchAddress(String value) async {
-    if(_debounce?.isActive == true) _debounce?.cancel();
-    _debounce = Timer(Duration(seconds: 1), (){
-      print(value);
-    });
+    try {
+      if(_debounce?.isActive == true) _debounce?.cancel();
+      _debounce = Timer(Duration(seconds: 1), () async{
+            if (value.isNotEmpty) {
+              print(value);
+              _places = await getAutocompleteSuggestions(value);
+              setState(() {});
+            }
+          });
+    } catch (e) {
+      rethrow;
+    }
   }
 
+  //----------------------------------------------------------------------------
+  //----------------------- Get place details ----------------------------------
+  //----------------------------------------------------------------------------
+
+  /*void getPlaceDetails(String placeId) async {
+    try {
+
+    } catch (e) {
+      rethrow;
+    }
+  }*/
 
   @override
   Widget build(BuildContext context) {
@@ -57,16 +78,19 @@ class _InputAddressState extends State<InputAddress> {
               ),
             ],
           ),
-          /*ListView.builder(
-            itemCount: _places.length,
-            itemBuilder: (_, i) {
-              var place = _places[i];
-              return ListTile(
-                leading: Icon(Icons.place),
-                title: Text(place.description),
-              );
-            },
-          ),*/
+          Expanded(
+            child: ListView.builder(
+              itemCount: _places.length,
+              itemBuilder: (_, i) {
+                var place = _places[i];
+                return ListTile(
+                  leading: Icon(Icons.place),
+                  title: Text(place.description),
+                  //onTap: () => getPlaceDetails(place.placeId),
+                );
+              },
+            ),
+          ),
         ],
       ),
     );
