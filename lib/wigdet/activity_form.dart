@@ -5,6 +5,8 @@ import 'package:dyma_trip/wigdet/activity_form_image_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
+import 'activity_form_autocomplete.dart';
+
 class ActivityForm extends StatefulWidget {
   final String cityName;
 
@@ -54,9 +56,11 @@ class _ActivityFormState extends State<ActivityForm> {
     _priceFocusNode = FocusNode();
     _urlFocusNode = FocusNode();
     _addressFocusNode = FocusNode();
-    _addressFocusNode.addListener(() {
+    _addressFocusNode.addListener(() async {
       if(_addressFocusNode.hasFocus){
+        var location = await showInputAutoComplete(context);
         print("Focus");
+        _urlFocusNode.requestFocus();
       }
       else{
         print("No focus");
