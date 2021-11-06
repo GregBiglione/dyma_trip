@@ -1,4 +1,5 @@
 import 'package:dyma_trip/model/activity_model.dart';
+import 'package:dyma_trip/model/location_activity_model.dart';
 import 'package:dyma_trip/provider/city_provider.dart';
 import 'package:dyma_trip/wigdet/activity_form_image_picker.dart';
 import 'package:flutter/material.dart';
@@ -18,9 +19,11 @@ class _ActivityFormState extends State<ActivityForm> {
   late Activity _newActivity;
   late FocusNode _priceFocusNode;
   late FocusNode _urlFocusNode;
+  late FocusNode _addressFocusNode;
   bool _isLoading = false;
   late String? _nameInputAsync;
   final TextEditingController _urlController = TextEditingController();
+  //final TextEditingController _addressController = TextEditingController();
 
   //----------------------------------------------------------------------------
   //----------------------- Get form state -------------------------------------
@@ -37,14 +40,28 @@ class _ActivityFormState extends State<ActivityForm> {
   @override
   void initState() {
     _newActivity = Activity(
-      name: null,
-      image: null,
+      name: " ",
+      image: " ",
       city: widget.cityName,
       price: 0,
+      location: LocationActivity(
+        address: " ",
+        lat: 0,
+        lng: 0,
+      ),
       status: ActivityStatus.toDo
     );
     _priceFocusNode = FocusNode();
     _urlFocusNode = FocusNode();
+    _addressFocusNode = FocusNode();
+    _addressFocusNode.addListener(() {
+      if(_addressFocusNode.hasFocus){
+        print("Focus");
+      }
+      else{
+        print("No focus");
+      }
+    });
     _nameInputAsync = null;
     super.initState();
   }
@@ -57,6 +74,9 @@ class _ActivityFormState extends State<ActivityForm> {
   void dispose() {
     _priceFocusNode.dispose();
     _urlFocusNode.dispose();
+    _addressFocusNode.dispose();
+    _urlController.dispose();
+    //_addressController.dispose();
     super.dispose();
   }
 
@@ -116,7 +136,7 @@ class _ActivityFormState extends State<ActivityForm> {
               onSaved: (value) => _newActivity.name = value!,
               onFieldSubmitted: (_) => FocusScope.of(context).requestFocus(_priceFocusNode),
             ),
-            SizedBox(height: 10,),
+            SizedBox(height: 30,),
             TextFormField(
               keyboardType: TextInputType.number,
               focusNode: _priceFocusNode,
@@ -133,7 +153,16 @@ class _ActivityFormState extends State<ActivityForm> {
               onSaved: (value) => _newActivity.price = double.parse(value!),
               onFieldSubmitted: (_) => FocusScope.of(context).requestFocus(_urlFocusNode),
             ),
-            SizedBox(height: 10,),
+            SizedBox(height: 30,),
+            TextFormField(
+              focusNode: _addressFocusNode,
+              //controller: _addressController,
+              decoration: InputDecoration(
+                hintText: "Adresse",
+              ),
+              onSaved: (value) => _newActivity.location!.address = value,
+            ),
+            SizedBox(height: 30,),
             TextFormField(
               keyboardType: TextInputType.url,
               focusNode: _urlFocusNode,
@@ -149,9 +178,9 @@ class _ActivityFormState extends State<ActivityForm> {
               },
               onSaved: (value) => _newActivity.image = value!,
             ),
-            SizedBox(height: 10,),
+            SizedBox(height: 30,),
             ActivityFormImagePicker(updateUrl: updateUrlField),
-            SizedBox(height: 10,),
+            SizedBox(height: 30,),
             Row(
               mainAxisAlignment: MainAxisAlignment.end,
               children: [
