@@ -7,9 +7,6 @@ import 'package:dyma_trip/view/trip_view.dart';
 import 'package:dyma_trip/view/trips_view.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'model/city_model.dart';
-
-import 'model/trip_model.dart';
 
 void main() {
   runApp(DymaTrip());
