@@ -1,7 +1,7 @@
 class LocationActivity {
   String? address;
-  double lat;
-  double lng;
+  double? latitude;
+  double? longitude;
 
-  LocationActivity({required this.address, required this.lat, required this.lng});
+  LocationActivity({this.address, this.latitude, this.longitude});
 }

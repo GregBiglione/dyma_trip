@@ -1,7 +1,7 @@
 import 'package:dyma_trip/model/activity_model.dart';
 import 'package:dyma_trip/model/location_activity_model.dart';
 import 'package:dyma_trip/provider/city_provider.dart';
-//import 'package:dyma_trip/wigdet/activity_form_autocomplete.dart';
+import 'package:dyma_trip/wigdet/activity_form_autocomplete.dart';
 import 'package:dyma_trip/wigdet/activity_form_image_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -24,6 +24,7 @@ class _ActivityFormState extends State<ActivityForm> {
   bool _isLoading = false;
   late String? _nameInputAsync;
   final TextEditingController _urlController = TextEditingController();
+  final TextEditingController _addressController = TextEditingController();
 
   //----------------------------------------------------------------------------
   //----------------------- Get form state -------------------------------------
@@ -45,25 +46,28 @@ class _ActivityFormState extends State<ActivityForm> {
       city: widget.cityName,
       price: 0,
       location: LocationActivity(
-        address: null,
-        lat: 0,
-        lng: 0,
+        address: " ",
+        latitude: 0,
+        longitude: 0,
       ),
       status: ActivityStatus.toDo
     );
     _priceFocusNode = FocusNode();
     _urlFocusNode = FocusNode();
     _addressFocusNode = FocusNode();
+    _nameInputAsync = null;
     _addressFocusNode.addListener(() async {
       if(_addressFocusNode.hasFocus){
-        //var location = await showInputAutoComplete();
-        print("Focus");
+        var location = await showInputAutoComplete(context);
+        setState(() {
+          print("Focus");
+        });
+        _urlFocusNode.requestFocus();
       }
       else{
         print("No focus");
       }
     });
-    _nameInputAsync = null;
     super.initState();
   }
 
@@ -77,6 +81,7 @@ class _ActivityFormState extends State<ActivityForm> {
     _urlFocusNode.dispose();
     _urlController.dispose();
     _addressFocusNode.dispose();
+    _addressController.dispose();
     super.dispose();
   }
 
@@ -156,10 +161,11 @@ class _ActivityFormState extends State<ActivityForm> {
             SizedBox(height: 30,),
             TextFormField(
               focusNode: _addressFocusNode,
+              controller: _addressController,
               decoration: InputDecoration(
                   hintText: "Adresse"
               ),
-              onSaved: (value) => _newActivity.location.address = value!,
+              onSaved: (value) => _newActivity.location!.address = value!,
             ),
             SizedBox(height: 30,),
             TextFormField(
