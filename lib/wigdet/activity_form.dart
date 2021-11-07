@@ -121,6 +121,14 @@ class _ActivityFormState extends State<ActivityForm> {
     });
   }
 
+  //----------------------------------------------------------------------------
+  //----------------------- Get current location -------------------------------
+  //----------------------------------------------------------------------------
+
+  void _getCurrentLocation() async {
+    print("Get location");
+  }
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -169,6 +177,18 @@ class _ActivityFormState extends State<ActivityForm> {
                   hintText: "Adresse"
               ),
               onSaved: (value) => _newActivity.location!.address = value!,
+            ),
+            SizedBox(height: 10,),
+            TextButton.icon(
+                onPressed: _getCurrentLocation,
+                icon: Icon(
+                  Icons.gps_fixed,
+                  color: Colors.black,
+                ),
+                label: Text(
+                  "Utiliser ma position actuelle",
+                  style: TextStyle(color: Colors.black),
+                ),
             ),
             SizedBox(height: 30,),
             TextFormField(
