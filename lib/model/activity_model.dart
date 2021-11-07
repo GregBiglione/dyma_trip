@@ -8,8 +8,8 @@ class Activity{
   late String? image;
   late String city;
   late double price;
-  late ActivityStatus status;
   late LocationActivity? location;
+  late ActivityStatus status;
 
   Activity({this.id, required this.name, required this.image, required this.city, required this.price, this.location,
     this.status = ActivityStatus.toDo});
@@ -24,6 +24,11 @@ class Activity{
         image = json["image"],
         city = json["city"],
         price = json["price"].toDouble(),
+        location = LocationActivity(
+          address: json["address"],
+          latitude: json["latitude"],
+          longitude: json["longitude"],
+        ),
         status = json["status"] == 0 ? ActivityStatus.toDo : ActivityStatus.done;
 
   //----------------------------------------------------------------------------
@@ -37,6 +42,9 @@ class Activity{
       "image": image,
       "city": city,
       "price": price,
+      "address": location!.address,
+      "latitude": location!.latitude!,
+      "longitude": location!.longitude!,
       "status": status == ActivityStatus.toDo ? 0 : 1,
     };
     if(id != null){

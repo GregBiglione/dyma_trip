@@ -1,9 +1,11 @@
+import 'package:dyma_trip/api/google_api.dart';
 import 'package:dyma_trip/model/activity_model.dart';
 import 'package:dyma_trip/model/location_activity_model.dart';
 import 'package:dyma_trip/provider/city_provider.dart';
 import 'package:dyma_trip/wigdet/activity_form_autocomplete.dart';
 import 'package:dyma_trip/wigdet/activity_form_image_picker.dart';
 import 'package:flutter/material.dart';
+import 'package:location/location.dart';
 import 'package:provider/provider.dart';
 
 class ActivityForm extends StatefulWidget {
@@ -126,7 +128,24 @@ class _ActivityFormState extends State<ActivityForm> {
   //----------------------------------------------------------------------------
 
   void _getCurrentLocation() async {
-    print("Get location");
+    try {
+      print("Get location");
+      LocationData userLocation = await Location().getLocation();
+      String address = await getAddressFromLatLng(
+          lat: userLocation.latitude!,
+          lng: userLocation.longitude!,
+      );
+      _newActivity.location = LocationActivity(
+        address: address,
+        latitude: userLocation.latitude!,
+        longitude: userLocation.longitude!,
+      );
+      setState(() {
+        _addressController.text = address;
+      });
+    } catch (e) {
+      rethrow;
+    }
   }
 
   @override

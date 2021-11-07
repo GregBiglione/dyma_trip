@@ -25,6 +25,14 @@ const GOOGLE_API_KEY = "";
   }
 
   //----------------------------------------------------------------------------
+  //----------------------- Get encoded current location -----------------------
+  //----------------------------------------------------------------------------
+
+  Uri _queryGetAddressFromLatLngBuilder({required double lat, required double lng}) {
+    return Uri.parse("https://maps.googleapis.com/maps/api/geocode/json?latlng=$lat,$lng&key=$GOOGLE_API_KEY");
+  }
+
+  //----------------------------------------------------------------------------
   //----------------------- Get places -----------------------------------------
   //----------------------------------------------------------------------------
 
@@ -71,3 +79,19 @@ const GOOGLE_API_KEY = "";
     }
   }
 
+  //----------------------------------------------------------------------------
+  //----------------------- Get current location -------------------------------
+  //----------------------------------------------------------------------------
+
+  Future<String> getAddressFromLatLng({required double lat, required double lng}) async {
+    try {
+      var response = await http.get(_queryGetAddressFromLatLngBuilder(lat: lat, lng: lng));
+      if (response.statusCode == 200) {
+        return json.decode(response.body)["results"][0]["formatted_address"];
+      } else {
+        throw "Error";
+      }
+    } catch (e) {
+      rethrow;
+    }
+  }
