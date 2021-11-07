@@ -21,7 +21,7 @@ class InputAddress extends StatefulWidget {
 
 class _InputAddressState extends State<InputAddress> {
   List<Place> _places = [];
-  late Timer? _debounce;
+  Timer? _debounce;
 
   //----------------------------------------------------------------------------
   //----------------------- Search address -------------------------------------
@@ -48,6 +48,13 @@ class _InputAddressState extends State<InputAddress> {
 
   Future<void> getPlaceDetails(String placeId) async {
     try {
+      LocationActivity location = await getPlaceAutocompleteDetails(placeId);
+      if (location != null) {
+        print(location);
+        Navigator.pop(context, location);
+      } else {
+        Navigator.pop(context);
+      }
     } catch (e) {
       rethrow;
     }

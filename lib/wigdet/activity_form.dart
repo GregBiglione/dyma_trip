@@ -59,8 +59,11 @@ class _ActivityFormState extends State<ActivityForm> {
     _addressFocusNode.addListener(() async {
       if(_addressFocusNode.hasFocus){
         var location = await showInputAutoComplete(context);
+        _newActivity.location = location;
         setState(() {
           print("Focus");
+          _addressController.text = location!.address!;
+          print(location.address!);
         });
         _urlFocusNode.requestFocus();
       }
