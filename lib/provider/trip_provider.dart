@@ -65,6 +65,14 @@ class TripProvider with ChangeNotifier {
   }
 
   //----------------------------------------------------------------------------
+  //----------------------- Get activities by id -------------------------------
+  //----------------------------------------------------------------------------
+
+  Activity getActivitiesById({required String activityId, required String tripId}){
+    return getTripById(tripId).activities.firstWhere((activity) => activity.id == activityId);
+  }
+
+  //----------------------------------------------------------------------------
   //----------------------- Set activity to done -------------------------------
   //----------------------------------------------------------------------------
 

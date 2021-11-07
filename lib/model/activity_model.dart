@@ -4,8 +4,8 @@ enum ActivityStatus { toDo, done }
 
 class Activity{
   late String? id;
-  late String? name;
-  late String? image;
+  late String name;
+  late String image;
   late String city;
   late double price;
   late LocationActivity? location;
@@ -37,7 +37,6 @@ class Activity{
 
   Map<String, dynamic> toJson() {
     Map<String, dynamic> value = {
-      "_id": id,
       "name": name,
       "image": image,
       "city": city,

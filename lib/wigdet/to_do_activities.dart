@@ -1,3 +1,4 @@
+import 'package:dyma_trip/google_maps/google_maps_view.dart';
 import 'package:dyma_trip/model/activity_model.dart';
 import 'package:dyma_trip/model/trip_model.dart';
 import 'package:dyma_trip/provider/trip_provider.dart';
@@ -35,9 +36,15 @@ class ToDoActivities extends StatelessWidget {
                     ),
                   ),
                   key: ValueKey(activity.id),
-                  child: Card(
-                    child: ListTile(
-                      title: Text(activity.name!),
+                  child: InkWell(
+                    onTap: () => Navigator.pushNamed(context, GoogleMapsView.ROUTE_NAME, arguments: {
+                      "activityId": activity.id,
+                      "tripId": trip.id,
+                    }),
+                    child: Card(
+                      child: ListTile(
+                        title: Text(activity.name),
+                      ),
                     ),
                   ),
                   confirmDismiss: (_) {
@@ -47,7 +54,7 @@ class ToDoActivities extends StatelessWidget {
                   },
                 ) : Card(
                   child: ListTile(
-                    title: Text(activity.name!, style: TextStyle(color: Colors.grey),
+                    title: Text(activity.name, style: TextStyle(color: Colors.grey),
                     ),
                     trailing: Icon(Icons.check_circle, color: Colors.green[700], size: 30,
                     ),

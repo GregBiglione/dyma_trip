@@ -17,9 +17,9 @@ class _TripActivityCardState extends State<TripActivityCard> {
     return Card(
       child: ListTile(
         leading: CircleAvatar(
-          backgroundImage: NetworkImage(widget.activity.image!),
+          backgroundImage: NetworkImage(widget.activity.image),
         ),
-        title: Text(widget.activity.name!),
+        title: Text(widget.activity.name),
         subtitle: Text(widget.activity.city),
         trailing: IconButton(
           icon: Icon(Icons.delete), color: Colors.red,

@@ -43,8 +43,8 @@ class _ActivityFormState extends State<ActivityForm> {
   @override
   void initState() {
     _newActivity = Activity(
-      name: null,
-      image: null,
+      name: " ",
+      image: " ",
       city: widget.cityName,
       price: 0,
       location: LocationActivity(
@@ -99,7 +99,7 @@ class _ActivityFormState extends State<ActivityForm> {
       CityProvider cityProvider = Provider.of<CityProvider>(context, listen: false);
       _formKey.currentState!.save();
       setState(() => _isLoading = true);
-      _nameInputAsync = await cityProvider.verifyIfActivityNameIsUnique(widget.cityName, _newActivity.name!);
+      _nameInputAsync = await cityProvider.verifyIfActivityNameIsUnique(widget.cityName, _newActivity.name);
       if(form!.validate()){
         await cityProvider.addActivityToCity(_newActivity);
         Navigator.pop(context);
