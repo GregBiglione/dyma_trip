@@ -44,8 +44,8 @@ const GOOGLE_API_KEY = "";
         return (body["predictions"] as List)
             .map(
               (suggestion) => Place(
-                  placeId: suggestion["place_id"],
-                  description: suggestion["description"],
+                  placeId: suggestion!["place_id"],
+                  description: suggestion!["description"],
               ),
             )
             .toList();

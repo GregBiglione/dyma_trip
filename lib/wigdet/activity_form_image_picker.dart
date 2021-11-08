@@ -16,7 +16,6 @@ class ActivityFormImagePicker extends StatefulWidget {
 }
 
 class _ActivityFormImagePickerState extends State<ActivityFormImagePicker> {
-  final ImagePicker imagePicker = ImagePicker();
   File? _deviceImage;
 
   //----------------------------------------------------------------------------
@@ -25,18 +24,14 @@ class _ActivityFormImagePickerState extends State<ActivityFormImagePicker> {
 
   Future<void> _pickImage(ImageSource source) async {
     try {
-      XFile? pickedFile = await imagePicker.pickImage(source: source);
-      _deviceImage = File(pickedFile!.path);
-      if(_deviceImage !=  null){
+      XFile? pickedFile = await ImagePicker().pickImage(source: source);
+      if(pickedFile !=  null){
+        _deviceImage = File(pickedFile.path);
         final url = await Provider.of<CityProvider>(context, listen: false).uploadImage(_deviceImage!);
-        print("url final $url");
         widget.updateUrl(url);
         setState(() {});
-        print("Image ok");
       }
-      else{
-        print("No image");
-      }
+      else{}
     } catch (e) {
       rethrow;
     }
