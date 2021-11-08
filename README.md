@@ -1,3 +1,5 @@
+<b>DymaTrip</b>
+
 <b>DymaTrip</b> is a Flutter application to view and trips with differents activities to do during a journey</br>
 
 <h2>Application features</h2></br>
@@ -63,5 +65,5 @@
 <h2>Languages available</h2></br>
 
 <ul>
- <li><img src ="https://github.com/GregBiglione/dyma_trip/blob/master/assets/images/fr.png" title = "fr" alt = "fr" width="10" height="5"> French</li>
+ <li><img src ="https://github.com/GregBiglione/dyma_trip/blob/master/assets/images/fr.png" title = "fr" alt = "fr" width="20" height="10"> French</li>
 </ul>
