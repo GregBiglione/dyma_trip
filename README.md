@@ -43,7 +43,7 @@
 
 <h2>Packages</h2></br>
 <ul>
- <li><a href="https://pub.dev/packages/intle">intl</a></li>
+ <li><a href="https://pub.dev/packages/intl">intl</a></li>
  <li><a href="https://pub.dev/packages/provider">provider</a></li>
  <li><a href="https://pub.dev/packages/http">http</a></li> 
  <li><a href="https://pub.dev/packages/image_picker">image_picker</a></li>
