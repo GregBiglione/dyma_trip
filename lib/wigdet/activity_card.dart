@@ -17,7 +17,7 @@ class ActivityCard extends StatelessWidget {
           fit: StackFit.expand,
           children: [
             Ink.image(
-              image: NetworkImage(activity.image!),
+              image: NetworkImage(activity.image),
               fit: BoxFit.cover,
               child: InkWell(
                 onTap: toggleActivity,
@@ -41,7 +41,7 @@ class ActivityCard extends StatelessWidget {
                       Flexible(
                           child: FittedBox(
                             child: Text(
-                              activity.name!,
+                              activity.name,
                               style: TextStyle(
                                 fontSize: 20,
                                 color: Colors.white,
