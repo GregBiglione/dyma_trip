@@ -1,4 +1,4 @@
-<b>DymaTrip</b> is a Flutter application to view city and trips with differents activities to do during a journey</br>
+<b>DymaTrip</b> is a Flutter application to view cities and trips with differents activities to do during a journey</br>
 
 <h2>Application features</h2></br>
 <ul>
