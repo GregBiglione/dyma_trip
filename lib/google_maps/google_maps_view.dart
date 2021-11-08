@@ -36,9 +36,25 @@ class _GoogleMapsViewState extends State<GoogleMapsView> {
 
   get _initialCameraPosition {
     return CameraPosition(
-      target: LatLng(_activity.location!.latitude!, _activity.location!.longitude!),
+      target: _activityLatLng,
       zoom: 16,
     );
+  }
+
+  //----------------------------------------------------------------------------
+  //----------------------- Get activity position ------------------------------
+  //----------------------------------------------------------------------------
+
+  get _activityLatLng {
+    return LatLng(_activity.location!.latitude!, _activity.location!.longitude!);
+  }
+
+  //----------------------------------------------------------------------------
+  //----------------------- Open url -------------------------------------------
+  //----------------------------------------------------------------------------
+
+  void _openUrl(){
+    print("Should open url");
   }
 
   @override
@@ -51,6 +67,18 @@ class _GoogleMapsViewState extends State<GoogleMapsView> {
         mapType: MapType.normal,
         onMapCreated: (controller) => _googleMapController = controller,
         initialCameraPosition: _initialCameraPosition,
+        markers: Set.of([
+          Marker(
+            markerId: MarkerId("marker"),
+            flat: true,
+            position: _activityLatLng,
+          ),
+        ]),
+      ),
+      floatingActionButton: FloatingActionButton.extended(
+        icon: Icon(Icons.directions_car),
+        onPressed: _openUrl,
+        label: Text("Go"),
       ),
     );
   }
