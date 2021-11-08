@@ -27,19 +27,19 @@
 
 <h4>Loader, cities list, add trip, check weather, dismiss an activity</h4></br>
 
-<img src = "https://github.com/GregBiglione/dyma_trip/blob/master/assets/images/1_loader.gif" title = "Loader" alt = "Loader" width="273" height="450"> <img src = "https://github.com/GregBiglione/dyma_trip/blob/master/assets/images/2_cities_list.gif" title = "Cities list" alt = "Cities list" width="273" height="450"> <img src = "https://github.com/GregBiglione/dyma_trip/blob/master/assets/images/3_add_trip_check_weather_dismissible.gif" title = "Add trip" alt = "Add trip" width="273" height="450">
+<img src ="https://github.com/GregBiglione/dyma_trip/blob/master/assets/images/1_loader.gif" title = "Loader" alt = "Loader" width="273" height="450"><img src ="https://github.com/GregBiglione/dyma_trip/blob/master/assets/images/2_cities_list.gif" title = "Cities list" alt = "Cities list" width="273" height="450"><img src ="https://github.com/GregBiglione/dyma_trip/blob/master/assets/images/3_add_trip_check_weather_dismissible.gif" title = "Add trip" alt = "Add trip" width="273" height="450">
 
 <h4>Filter cities, access maps activities, add activity</h4></br>
 
-<img src = "https://github.com/GregBiglione/dyma_trip/blob/master/assets/images/5_filter.gif" title = "Filter cities" alt = "Filter cities" width="273" height="450"> <img src = "https://github.com/GregBiglione/dyma_trip/blob/master/assets/images/6_maps.gif" title = "Maps" alt = "Maps" width="273" height="450"> <img src = "https://github.com/GregBiglione/dyma_trip/blob/master/assets/images/7_add_activity.gif" title = "Add activity" alt = "Add activity" width="273" height="450"> 
+<img src ="https://github.com/GregBiglione/dyma_trip/blob/master/assets/images/5_filter.gif" title = "Filter cities" alt = "Filter cities" width="273" height="450"><img src ="https://github.com/GregBiglione/dyma_trip/blob/master/assets/images/6_maps.gif" title = "Maps" alt = "Maps" width="273" height="450"><img src ="https://github.com/GregBiglione/dyma_trip/blob/master/assets/images/7_add_activity.gif" title = "Add activity" alt = "Add activity" width="273" height="450"> 
 
 <h4>Check uniqueness, add activity with user's location, access GPS</h4></br>
 
-<img src = "https://github.com/GregBiglione/dyma_trip/blob/master/assets/images/8_check_uniqueness.gif" title = "Check uniqueness" alt = "Check uniqueness" width="273" height="450"> <img src = "https://github.com/GregBiglione/dyma_trip/blob/master/assets/images/9_add_activity_with_location.gif" title = "User's location" alt = "User's locatio" width="273" height="450"> <img src = "https://github.com/GregBiglione/dyma_trip/blob/master/assets/images/10_gps.gif" title = "GPS" alt = "GPS" width="273" height="450"> 
+<img src ="https://github.com/GregBiglione/dyma_trip/blob/master/assets/images/8_check_uniqueness.gif" title = "Check uniqueness" alt = "Check uniqueness" width="273" height="450"><img src ="https://github.com/GregBiglione/dyma_trip/blob/master/assets/images/9_add_activity_with_location.gif" title = "User's location" alt = "User's locatio" width="273" height="450"><img src ="https://github.com/GregBiglione/dyma_trip/blob/master/assets/images/10_gps.gif" title = "GPS" alt = "GPS" width="273" height="450"> 
 
 <h4>Landscape mode</h4></br>
 
-<img src = "https://github.com/GregBiglione/dyma_trip/blob/master/assets/images/4_landscape.gif" title = "Landscape" alt = "Landscape" width="450" height="273">
+<img src ="https://github.com/GregBiglione/dyma_trip/blob/master/assets/images/4_landscape.gif" title = "Landscape" alt = "Landscape" width="450" height="273">
 
 <h2>Packages</h2></br>
 <ul>
