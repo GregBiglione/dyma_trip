@@ -50,8 +50,8 @@
  <li><a href="https://pub.dev/packages/location">location</a></li> 
  <li><a href="https://pub.dev/packages/google_maps_flutter">google_maps_flutter</a></li>  
  <li><a href="https://pub.dev/packages/url_launcher">url_launcher</a></li>
-<h2>API</h2></br>
 
+<h2>API</h2></br>
 <ul>
  <li><a href="https://openweathermap.org/">Open weather map</a></li>
  <li><a href="https://developers.google.com/maps/documentation/geocoding/overview">Geocoding API</a></li>
