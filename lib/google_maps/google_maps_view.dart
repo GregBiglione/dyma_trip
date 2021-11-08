@@ -3,6 +3,8 @@ import 'package:dyma_trip/provider/trip_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:provider/provider.dart';
+import 'package:url_launcher/url_launcher.dart';
+
 
 class GoogleMapsView extends StatefulWidget {
   static const String ROUTE_NAME = "/maps";
@@ -53,8 +55,13 @@ class _GoogleMapsViewState extends State<GoogleMapsView> {
   //----------------------- Open url -------------------------------------------
   //----------------------------------------------------------------------------
 
-  void _openUrl(){
-    print("Should open url");
+  Future<void> _openUrl() async {
+    final url = "google.navigation:q=${_activity.location!.address}";
+    try {
+      await launch(url);
+    } catch (e) {
+      rethrow;
+    }
   }
 
   @override
