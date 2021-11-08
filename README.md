@@ -64,5 +64,5 @@
 <h2>Languages available</h2></br>
 
 <ul>
- <li><img src ="https://github.com/GregBiglione/dyma_trip/blob/master/assets/images/fr.png" title = "fr" alt = "fr" width="20" height="15"> French</li>
+ <li><img src ="https://github.com/GregBiglione/dyma_trip/blob/master/assets/images/fr.png" title = "fr" alt = "fr" width="20" height="12"> French</li>
 </ul>
