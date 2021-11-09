@@ -39,7 +39,7 @@
 
 <h4>Landscape mode</h4></br>
 
-<img src ="https://github.com/GregBiglione/dyma_trip/blob/master/assets/images/4_landscape.gif" title = "Landscape" alt = "Landscape" width="450" height="273">
+<img src ="https://github.com/GregBiglione/dyma_trip/blob/master/assets/images/4_landscape.gif" title = "Landscape" alt = "Landscape">
 
 <h2>Packages</h2></br>
 <ul>
